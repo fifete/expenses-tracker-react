@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const Welcome = ({
-  setShowAddBudgetModal
+  handleShow
 }) => {
   return (
     <div className='home-welcome'>
@@ -17,7 +17,7 @@ export const Welcome = ({
       </div>
       <div>
         <div>
-          <span onClick={() => setShowAddBudgetModal(true)}>+</span>
+          <span onClick={() => handleShow(true)}>+</span>
           <p>Expense</p>
         </div>
         <div>

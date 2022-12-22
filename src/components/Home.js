@@ -5,13 +5,16 @@ import { Welcome } from './Welcome'
 
 export const Home = () => {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
+  const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
 
   return (
     <div className='home'>
       <Welcome
-        setShowAddBudgetModal={setShowAddBudgetModal}
+        handleShow={setShowAddExpenseModal}
       />
-      <Categories />
+      <Categories 
+        handleShow={setShowAddBudgetModal}
+      />
       <AddCategoryModal
         show={showAddBudgetModal}
         handleClose={() => setShowAddBudgetModal(false)}

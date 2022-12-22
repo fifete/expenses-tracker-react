@@ -3,7 +3,6 @@ import { Form, Modal, Button } from "react-bootstrap"
 import React from 'react'
 
 export const AddCategoryModal = ({ show, handleClose }) => {
-  console.log(show)
   return (
     <Modal show={show} onHide={handleClose}>
       <Form>

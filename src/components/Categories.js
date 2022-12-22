@@ -1,11 +1,13 @@
 import React from 'react'
 
-export const Categories = () => {
+export const Categories = ({
+  handleShow
+}) => {
   return (
     <div className='categories'>
       <div>
         <h3>Categories</h3>
-        <button>+</button>
+        <button onClick={() => handleShow(true)}>+</button>
       </div>
       <div className='categories'>
         <div>

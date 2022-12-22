@@ -13,8 +13,8 @@ export const Category = () => {
                     <h2>Food</h2>
                     <div>
                         <div>
-                            <span>$14.5</span>
-                            <span> / $20</span>
+                            <h5>$14.5</h5>
+                            <h5> / $20</h5>
                         </div>
                         <div className='categ-percent-bar'></div>
                     </div>
@@ -27,7 +27,7 @@ export const Category = () => {
                         <div className='spent-info'>
                             <div>
                                 <p>Hamburguer</p>
-                                <span>$5.3</span>
+                                <h5>$5.3</h5>
                             </div>
                             <div>
                                 <p>8:21 pm</p>

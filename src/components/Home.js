@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { AddCategoryModal } from './AddCategoryModal'
+import { AddExpenseModal } from './AddExpenseModal'
 import { Categories } from './Categories'
 import { Welcome } from './Welcome'
 
@@ -18,6 +19,10 @@ export const Home = () => {
       <AddCategoryModal
         show={showAddBudgetModal}
         handleClose={() => setShowAddBudgetModal(false)}
+      />
+      <AddExpenseModal
+        show={showAddExpenseModal}
+        handleClose={() => setShowAddExpenseModal(false)}
       />
     </div>
   )

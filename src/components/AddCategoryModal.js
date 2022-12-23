@@ -9,8 +9,11 @@ export const AddCategoryModal = ({ show, handleClose }) => {
   const { addBudget } = useCategories()
   function handleSubmit(e) {
     e.preventDefault()
-    console.log('form sended')
-    console.log(nameRef.current.value, maxRef.current.value)
+    addBudget({
+      name: nameRef.current.value,
+      max: maxRef.current.value
+    })
+    handleClose()
   }
 
   return (

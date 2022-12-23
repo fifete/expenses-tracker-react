@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react"
+import { v4 as uuidv4 } from 'uuid';
 
 const CategoriesContext = React.createContext()
 
@@ -14,8 +15,10 @@ export function CategoriesProvider({ children }) {
     return expenses.filter(expense => expense.budgetId === budgetId)
   }
 
-  function addBudget() {
-    console.log('budget added')
+  function addBudget({ name, max }) {
+    setBudgets(prevBudgets => {
+      return [...prevBudgets, { id: uuidv4(), name, max }]
+    })
   }
 
   const value = {

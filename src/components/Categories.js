@@ -21,10 +21,11 @@ export const Categories = ({
           ) */}
           return (
             <CategoryCard
-              // key={budget.id}
-              // name={budget.name}
+              key={budget.id}
+              name={budget.name}
               // amount={amount}
-              // max={budget.max}
+              amount={500}
+              max={budget.max}
             />
           )
         })}

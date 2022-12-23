@@ -14,11 +14,16 @@ export function CategoriesProvider({ children }) {
     return expenses.filter(expense => expense.budgetId === budgetId)
   }
 
+  function addBudget() {
+    console.log('budget added')
+  }
+
   const value = {
     budgets,
     // setBudgets,
     // expenses,
     // setExpenses,
+    addBudget,
     getBudgetExpenses
   }
 

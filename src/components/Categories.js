@@ -15,10 +15,10 @@ export const Categories = ({
       </div>
       <div className='categories-cards'>
         {budgets.map(budget => {
-          const amount = getBudgetExpenses(budget.id).reduce(
+          {/* const amount = getBudgetExpenses(budget.id).reduce(
             (total, expense) => total + expense.amount,
             0
-          )
+          ) */}
           return (
             <CategoryCard
               // key={budget.id}

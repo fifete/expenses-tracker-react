@@ -1,22 +1,33 @@
 import { Form, Modal, Button } from "react-bootstrap"
 
-import React from 'react'
+import React, { useRef } from 'react'
+import { useCategories } from "../contexts/CategoriesContext"
 
 export const AddCategoryModal = ({ show, handleClose }) => {
+  const nameRef = useRef()
+  const maxRef = useRef()
+  const { addBudget } = useCategories()
+  function handleSubmit(e) {
+    e.preventDefault()
+    console.log('form sended')
+    console.log(nameRef.current.value, maxRef.current.value)
+  }
+
   return (
     <Modal show={show} onHide={handleClose}>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
           <Modal.Title>Add Category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="text" required />
+            <Form.Control ref={nameRef} type="text" required />
           </Form.Group>
           <Form.Group className="mb-3" controlId="max">
             <Form.Label>Maximum Spending</Form.Label>
             <Form.Control
+              ref={maxRef}
               type="number"
               required
               min={0}
@@ -31,6 +42,5 @@ export const AddCategoryModal = ({ show, handleClose }) => {
         </Modal.Body>
       </Form>
     </Modal>
-    )
-  }
-  
+  )
+}

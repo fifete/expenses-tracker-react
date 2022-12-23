@@ -1,12 +1,12 @@
 import './App.css';
-import { Category } from './components/Category';
+import { CategoryView } from './components/Category';
 import { Home } from './components/Home';
 
 function App() {
   return (
     <div className="Home">
       <Home />
-      <Category />
+      <CategoryView />
     </div>
   );
 }

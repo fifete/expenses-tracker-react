@@ -17,8 +17,15 @@ export function CategoriesProvider({ children }) {
 
   function addBudget({ name, max }) {
     setBudgets(prevBudgets => {
+      if(prevBudgets.find(budget => budget.name === name)) {
+        return prevBudgets
+      }
       return [...prevBudgets, { id: uuidv4(), name, max }]
     })
+  }
+
+  function deleteBudget() {
+    console.log('deleted category')
   }
 
   const value = {
@@ -26,6 +33,7 @@ export function CategoriesProvider({ children }) {
     // setBudgets,
     // expenses,
     // setExpenses,
+    deleteBudget,
     addBudget,
     getBudgetExpenses
   }

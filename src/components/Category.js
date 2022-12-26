@@ -7,6 +7,7 @@ export const CategoryView = () => {
   const { deleteBudget } = useCategories()
   const [showEditModal, setShowEditModal] = React.useState(false);
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
+
   return (
     <>
       <div>
@@ -14,9 +15,9 @@ export const CategoryView = () => {
           <div>
             <i>⬅</i>
             <OptionsModal
-              // onClick={deleteBudget}
               handleShowEdit={setShowEditModal}
               handleShowDelete={setShowDeleteModal}
+              showTooltip={!showEditModal || showDeleteModal}
             />
           </div>
           <div>
@@ -57,6 +58,7 @@ export const CategoryView = () => {
         title="Confirm Edit"
         body="Do you want to edit this item?"
         show={showEditModal}
+        action='Edit'
         handleClose={() => setShowEditModal(false)}
         onConfirm={() => console.log('edit clicked')}
       />
@@ -64,6 +66,7 @@ export const CategoryView = () => {
         title="Confirm Delete"
         body="Do you want to delete this item?"
         show={showDeleteModal}
+        action='Delete'
         handleClose={() => setShowDeleteModal(false)}
         onConfirm={() => console.log('delete clicked')}
       />

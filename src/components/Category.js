@@ -5,9 +5,15 @@ import { OptionsModal } from './OptionsModal'
 
 export const CategoryView = () => {
   const { deleteBudget } = useCategories()
+  const [showTooltip, setShowTooltip] = React.useState(false);
   const [showEditModal, setShowEditModal] = React.useState(false);
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
-
+// console log showEditModal || showDeleteModal when those states change
+  React.useEffect(() => {
+    console.log(showEditModal || showDeleteModal)
+    console.log('Boolean', showEditModal, showDeleteModal)
+    setShowTooltip(!showEditModal || showDeleteModal)
+  }, [showEditModal, showDeleteModal])
   return (
     <>
       <div>
@@ -17,7 +23,7 @@ export const CategoryView = () => {
             <OptionsModal
               handleShowEdit={setShowEditModal}
               handleShowDelete={setShowDeleteModal}
-              showTooltip={!showEditModal || showDeleteModal}
+              showTooltip={showTooltip}
             />
           </div>
           <div>

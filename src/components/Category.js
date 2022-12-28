@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom';
 import { useCategories } from '../contexts/CategoriesContext'
 import { ConfirmModal } from './ConfirmModal'
 import { OptionsModal } from './OptionsModal'
@@ -8,7 +9,12 @@ export const CategoryView = () => {
   const [showTooltip, setShowTooltip] = React.useState(false);
   const [showEditModal, setShowEditModal] = React.useState(false);
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
-// console log showEditModal || showDeleteModal when those states change
+
+  const location = useLocation();
+  console.log(location)
+  console.log(location.state)
+  const {cardId, cardName, cardMax, cardAmount} = location.state? location.state : {cardId: 0, cardName: '', cardMax: 0, cardAmount: 0}
+
   React.useEffect(() => {
     console.log(showEditModal || showDeleteModal)
     console.log('Boolean', showEditModal, showDeleteModal)
@@ -28,11 +34,11 @@ export const CategoryView = () => {
           </div>
           <div>
             <i>🍔</i>
-            <h2>Food</h2>
+            <h2>{cardName}</h2>
             <div>
               <div>
-                <h5>$14.5</h5>
-                <h5> / $20</h5>
+                <h5>${cardAmount}</h5>
+                <h5> / ${cardMax}</h5>
               </div>
               <div className='categ-percent-bar'></div>
             </div>

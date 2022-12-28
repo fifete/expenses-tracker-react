@@ -22,6 +22,7 @@ export const Categories = ({
           return (
             <CategoryCard
               key={budget.id}
+              id={budget.id}
               name={budget.name}
               // amount={amount}
               amount={500}

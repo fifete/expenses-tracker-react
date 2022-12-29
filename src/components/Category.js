@@ -2,18 +2,18 @@ import React from 'react'
 import { useLocation } from 'react-router-dom';
 import { useCategories } from '../contexts/CategoriesContext'
 import { ConfirmModal } from './ConfirmModal'
+import { Expense } from './Expense';
 import { OptionsModal } from './OptionsModal'
 
 export const CategoryView = () => {
-  const { deleteBudget } = useCategories()
+  const { getBudgetExpenses, deleteBudget } = useCategories()
   const [showTooltip, setShowTooltip] = React.useState(false);
   const [showEditModal, setShowEditModal] = React.useState(false);
   const [showDeleteModal, setShowDeleteModal] = React.useState(false);
 
   const location = useLocation();
-  console.log(location)
-  console.log(location.state)
-  const {cardId, cardName, cardMax, cardAmount} = location.state? location.state : {cardId: 0, cardName: '', cardMax: 0, cardAmount: 0}
+  const { cardId, cardName, cardMax, cardAmount } = location.state ? location.state : { cardId: 0, cardName: '', cardMax: 0, cardAmount: 0 }
+  const expenses = getBudgetExpenses(cardId)
 
   React.useEffect(() => {
     console.log(showEditModal || showDeleteModal)
@@ -47,22 +47,11 @@ export const CategoryView = () => {
         <div>
           <button>Add Expense</button>
           <div className='categ-expenses'>
-            <div className='categ-spent'>
-              <div className='spent-info'>
-                <div>
-                  <p>Hamburguer</p>
-                  <h5>$5.3</h5>
-                </div>
-                <div>
-                  <p>8:21 pm</p>
-                  <p>12/21/2022</p>
-                </div>
-              </div>
-              <div className='spent-edit-tools'>
-                <i>🖋</i>
-                <i>🗑</i>
-              </div>
-            </div>
+            {
+              expenses.map(expenseInfo => (
+                <Expense expense={expenseInfo} key={expenseInfo.id}/>
+              ))
+            }
           </div>
         </div>
       </div>

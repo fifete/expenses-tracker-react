@@ -21,6 +21,12 @@ export function CategoriesProvider({ children }) {
     })
   }
 
+  function deleteExpense(expenseID) {
+    setExpenses(prevExpenses => {
+      return prevExpenses.filter(expense => expense.id !== expenseID)
+    })
+  }
+
   function addBudget({ name, max }) {
     setBudgets(prevBudgets => {
       if(prevBudgets.find(budget => budget.name === name)) {
@@ -37,6 +43,7 @@ export function CategoriesProvider({ children }) {
   const value = {
     budgets,
     addExpense,
+    deleteExpense,
     // setBudgets,
     expenses,
     // setExpenses,

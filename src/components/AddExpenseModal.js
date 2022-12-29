@@ -53,7 +53,6 @@ export const AddExpenseModal = ({
             <Form.Select
               disabled={isDisabled}
               defaultValue={defaultCategory ? defaultCategory : 'Uncategorized'}
-              // defaultValue='Food'
               ref={budgetIdRef}
             >
               {budgets.map(budget => (
@@ -62,7 +61,6 @@ export const AddExpenseModal = ({
                 </option>
               ))}
               <option>Uncategorized</option>
-              {/* <option>Food</option> */}
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3" controlId="description">

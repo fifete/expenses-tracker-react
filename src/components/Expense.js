@@ -1,7 +1,10 @@
 import React from 'react'
+import { useCategories } from '../contexts/CategoriesContext'
+
 import { Stack } from 'react-bootstrap'
 
 export const Expense = ({ expense }) => {
+    const { deleteExpense } = useCategories()
     return (
         <div className='categ-spent'>
             <Stack direction="vertical" gap="2">
@@ -16,7 +19,7 @@ export const Expense = ({ expense }) => {
             </Stack>
             <div className='spent-edit-tools'>
                 <i>🖋</i>
-                <i>🗑</i>
+                <i onClick={() => deleteExpense(expense.id)}>🗑</i>
             </div>
         </div>
     )

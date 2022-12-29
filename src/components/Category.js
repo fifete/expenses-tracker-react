@@ -7,7 +7,7 @@ import { Expense } from './Expense';
 import { OptionsModal } from './OptionsModal'
 
 export const CategoryView = () => {
-  const {getBudgetExpenses, deleteBudget} = useCategories()
+  const { getBudgetExpenses } = useCategories()
   const [showTooltip, setShowTooltip] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -51,7 +51,10 @@ export const CategoryView = () => {
           <div className='categ-expenses'>
             {
               expenses.map(expenseInfo => (
-                <Expense expense={expenseInfo} key={expenseInfo.id}/>
+                <Expense
+                  expense={expenseInfo}
+                  key={expenseInfo.id}
+                />
               ))
             }
           </div>

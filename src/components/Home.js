@@ -23,6 +23,8 @@ export const Home = () => {
       <AddExpenseModal
         show={showAddExpenseModal}
         handleClose={() => setShowAddExpenseModal(false)}
+        defaultCategory=''
+        isDisabled={false}
       />
     </div>
   )

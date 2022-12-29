@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { useCategories } from '../contexts/CategoriesContext'
+import { AddExpenseModal } from './AddExpenseModal';
 import { ConfirmModal } from './ConfirmModal'
 import { Expense } from './Expense';
 import { OptionsModal } from './OptionsModal'
 
 export const CategoryView = () => {
-  const { getBudgetExpenses, deleteBudget } = useCategories()
-  const [showTooltip, setShowTooltip] = React.useState(false);
-  const [showEditModal, setShowEditModal] = React.useState(false);
-  const [showDeleteModal, setShowDeleteModal] = React.useState(false);
+  const {getBudgetExpenses, deleteBudget} = useCategories()
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
 
   const location = useLocation();
-  const { cardId, cardName, cardMax, cardAmount } = location.state ? location.state : { cardId: 0, cardName: '', cardMax: 0, cardAmount: 0 }
+  const { cardId, cardName, cardMax, cardAmount } = location.state ? location.state : { cardId: 0, cardName: 'current category', cardMax: 0, cardAmount: 0 }
   const expenses = getBudgetExpenses(cardId)
 
   React.useEffect(() => {
@@ -45,7 +47,7 @@ export const CategoryView = () => {
           </div>
         </div>
         <div>
-          <button>Add Expense</button>
+          <button onClick={() => setShowAddExpenseModal(true)}>Add Expense</button>
           <div className='categ-expenses'>
             {
               expenses.map(expenseInfo => (
@@ -70,6 +72,12 @@ export const CategoryView = () => {
         action='Delete'
         handleClose={() => setShowDeleteModal(false)}
         onConfirm={() => console.log('delete clicked')}
+      />
+      <AddExpenseModal
+        show={showAddExpenseModal}
+        handleClose={() => setShowAddExpenseModal(false)}
+        defaultCategory={cardName}
+        isDisabled={true}
       />
     </>
   )

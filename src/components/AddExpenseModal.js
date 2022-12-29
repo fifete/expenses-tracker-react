@@ -6,22 +6,22 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useCategories } from '../contexts/CategoriesContext';
 
 export const AddExpenseModal = ({
-  show, handleClose
+  show, handleClose, defaultCategory, isDisabled
 }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const descriptionRef = useRef()
   const amountRef = useRef()
   const budgetIdRef = useRef()
   const { addExpense, budgets } = useCategories()
-  
+
   function handleSubmit(e) {
     e.preventDefault()
     console.log(
-      'new spent', 
+      'new spent',
       descriptionRef.current.value,
-       amountRef.current.value,
-        budgetIdRef.current.value, selectedDate
-      )
+      amountRef.current.value,
+      budgetIdRef.current.value, selectedDate
+    )
     addExpense({
       date: selectedDate,
       description: descriptionRef.current.value,
@@ -50,13 +50,19 @@ export const AddExpenseModal = ({
           </Form.Group>
           <Form.Group className="mb-3" controlId="budgetId">
             <Form.Label>Category</Form.Label>
-            <Form.Select defaultValue='default' ref={budgetIdRef}>
-              <option>Uncategorized</option>
+            <Form.Select
+              disabled={isDisabled}
+              defaultValue={defaultCategory ? defaultCategory : 'Uncategorized'}
+              // defaultValue='Food'
+              ref={budgetIdRef}
+            >
               {budgets.map(budget => (
                 <option key={budget.id} value={budget.id}>
                   {budget.name}
                 </option>
               ))}
+              <option>Uncategorized</option>
+              {/* <option>Food</option> */}
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3" controlId="description">

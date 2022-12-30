@@ -37,8 +37,14 @@ export function CategoriesProvider({ children }) {
     })
   }
 
-  function deleteBudget() {
-    console.log('deleted category')
+  function deleteBudget(id) {
+    setExpenses(prevExpenses => {
+      return prevExpenses.filter(expense => expense.id !== id)
+    })
+
+    setBudgets(prevBudgets => {
+      return prevBudgets.filter(budget => budget.id !== id)
+    })
   }
 
   const value = {

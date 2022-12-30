@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useCategories } from '../contexts/CategoriesContext'
 import { AddExpenseModal } from './AddExpenseModal';
 import { ConfirmModal } from './ConfirmModal'
@@ -7,12 +7,13 @@ import { Expense } from './Expense';
 import { OptionsModal } from './OptionsModal'
 
 export const CategoryView = () => {
-  const { getBudgetExpenses, deleteExpense } = useCategories()
+  const { getBudgetExpenses, deleteExpense, deleteBudget } = useCategories()
   const [showTooltip, setShowTooltip] = useState(false);
   const [showDeleteModalCategory, setShowDeleteModalCategory] = useState(false);
   const [showDeleteModalExpense, setShowDeleteModalExpense] = useState({ isOpen: false, expenseID: '' });
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
 
+  const navigate = useNavigate();
   const location = useLocation();
   const { cardId, cardName, cardMax, cardAmount } = location.state ? location.state : { cardId: 0, cardName: 'current category', cardMax: 0, cardAmount: 0 }
   const expenses = getBudgetExpenses(cardId)
@@ -68,7 +69,11 @@ export const CategoryView = () => {
         body="Do you want to delete this category?"
         show={showDeleteModalCategory}
         handleClose={() => setShowDeleteModalCategory(false)}
-        onConfirm={() => console.log('delete clicked')}
+        onConfirm={() => {
+          setShowDeleteModalCategory(false)
+          navigate("/home");
+          deleteBudget(cardId)
+        }}
       />
       <ConfirmModal
         title="Confirm delete"

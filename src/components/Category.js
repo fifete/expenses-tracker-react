@@ -7,10 +7,10 @@ import { Expense } from './Expense';
 import { OptionsModal } from './OptionsModal'
 
 export const CategoryView = () => {
-  const { getBudgetExpenses } = useCategories()
+  const { getBudgetExpenses, deleteExpense } = useCategories()
   const [showTooltip, setShowTooltip] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showDeleteModalCategory, setShowDeleteModalCategory] = useState(false);
+  const [showDeleteModalExpense, setShowDeleteModalExpense] = useState({ isOpen: false, expenseID: '' });
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
 
   const location = useLocation();
@@ -18,10 +18,8 @@ export const CategoryView = () => {
   const expenses = getBudgetExpenses(cardId)
 
   React.useEffect(() => {
-    console.log(showEditModal || showDeleteModal)
-    console.log('Boolean', showEditModal, showDeleteModal)
-    setShowTooltip(!showEditModal || showDeleteModal)
-  }, [showEditModal, showDeleteModal])
+    setShowTooltip(!showDeleteModalCategory)
+  }, [showDeleteModalCategory])
   return (
     <>
       <div>
@@ -29,8 +27,7 @@ export const CategoryView = () => {
           <div>
             <i>⬅</i>
             <OptionsModal
-              handleShowEdit={setShowEditModal}
-              handleShowDelete={setShowDeleteModal}
+              handleShowDelete={setShowDeleteModalCategory}
               showTooltip={showTooltip}
             />
           </div>
@@ -54,27 +51,34 @@ export const CategoryView = () => {
                 <Expense
                   expense={expenseInfo}
                   key={expenseInfo.id}
+                  handleShowDelete={() => setShowDeleteModalExpense(prev => ({
+                    ...prev,
+                    isOpen: true,
+                    expenseID: expenseInfo.id
+                  }))}
                 />
               ))
             }
           </div>
         </div>
       </div>
+
       <ConfirmModal
-        title="Confirm Edit"
-        body="Do you want to edit this item?"
-        show={showEditModal}
-        action='Edit'
-        handleClose={() => setShowEditModal(false)}
-        onConfirm={() => console.log('edit clicked')}
+        title="Confirm delete"
+        body="Do you want to delete this category?"
+        show={showDeleteModalCategory}
+        handleClose={() => setShowDeleteModalCategory(false)}
+        onConfirm={() => console.log('delete clicked')}
       />
       <ConfirmModal
-        title="Confirm Delete"
-        body="Do you want to delete this item?"
-        show={showDeleteModal}
-        action='Delete'
-        handleClose={() => setShowDeleteModal(false)}
-        onConfirm={() => console.log('delete clicked')}
+        title="Confirm delete"
+        body="Do you want to delete this expense?"
+        show={showDeleteModalExpense.isOpen}
+        handleClose={() => setShowDeleteModalExpense(prev => ({ ...prev, isOpen: false }))}
+        onConfirm={() => {
+          setShowDeleteModalExpense(prev => ({ ...prev, isOpen: false }))
+          deleteExpense(showDeleteModalExpense.expenseID)
+        }}
       />
       <AddExpenseModal
         show={showAddExpenseModal}

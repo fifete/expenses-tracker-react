@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
 
 export const ConfirmModal = ({
-  title, body, show, action, handleClose, onConfirm
+  title, body, show, handleClose, onConfirm
 }) => {
   return (
     <>
@@ -15,8 +15,8 @@ export const ConfirmModal = ({
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant={action === "delete" ? "danger" : "primary"} onClick={onConfirm}>
-            {action}
+          <Button variant="danger" onClick={onConfirm}>
+            Delete
           </Button>
         </Modal.Footer>
       </Modal>

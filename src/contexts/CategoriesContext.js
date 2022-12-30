@@ -22,6 +22,7 @@ export function CategoriesProvider({ children }) {
   }
 
   function deleteExpense(expenseID) {
+    console.log(expenseID)
     setExpenses(prevExpenses => {
       return prevExpenses.filter(expense => expense.id !== expenseID)
     })

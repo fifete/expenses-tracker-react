@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useCategories } from '../contexts/CategoriesContext'
 import { AddExpenseModal } from './AddExpenseModal';
 import { ConfirmModal } from './ConfirmModal'
+import { EditExpenseModal } from './EditExpenseModal';
 import { Expense } from './Expense';
 import { OptionsModal } from './OptionsModal'
 
@@ -12,6 +13,7 @@ export const CategoryView = () => {
   const [showDeleteModalCategory, setShowDeleteModalCategory] = useState(false);
   const [showDeleteModalExpense, setShowDeleteModalExpense] = useState({ isOpen: false, expenseID: '' });
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
+  const [showEditExpenseModal, setShowEditExpenseModal] = useState(false)
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,7 +28,7 @@ export const CategoryView = () => {
       <div>
         <div>
           <div>
-            <i>⬅</i>
+            <i onClick={() => navigate("/home")}>⬅</i>
             <OptionsModal
               handleShowDelete={setShowDeleteModalCategory}
               showTooltip={showTooltip}
@@ -57,6 +59,7 @@ export const CategoryView = () => {
                     isOpen: true,
                     expenseID: expenseInfo.id
                   }))}
+                  handleShowEdit={() => setShowEditExpenseModal(true)}
                 />
               ))
             }
@@ -90,6 +93,13 @@ export const CategoryView = () => {
         handleClose={() => setShowAddExpenseModal(false)}
         defaultCategory={cardName}
         isDisabled={true}
+      />
+
+      <EditExpenseModal
+        show={showEditExpenseModal}
+        handleClose={() => setShowEditExpenseModal(false)}
+        defaultCategory={cardName}
+        isDisabled={false}
       />
     </>
   )

@@ -25,6 +25,7 @@ export const Home = () => {
         handleClose={() => setShowAddExpenseModal(false)}
         defaultCategory=''
         isDisabled={false}
+        action="Add"
       />
     </div>
   )

@@ -21,8 +21,20 @@ export function CategoriesProvider({ children }) {
     })
   }
 
+  function updateExpense({ date, description, amount, budgetId, expenseId }) {
+    setExpenses(prevExpenses => {
+      const expenseToUpdate = prevExpenses.find(expense => expense.id === expenseId)
+      if(expenseToUpdate) {
+        expenseToUpdate.date = date
+        expenseToUpdate.description = description
+        expenseToUpdate.amount = amount
+        expenseToUpdate.budgetId = budgetId
+      }
+      return prevExpenses
+    })
+  }
+
   function deleteExpense(expenseID) {
-    console.log(expenseID)
     setExpenses(prevExpenses => {
       return prevExpenses.filter(expense => expense.id !== expenseID)
     })
@@ -51,6 +63,7 @@ export function CategoriesProvider({ children }) {
     budgets,
     addExpense,
     deleteExpense,
+    updateExpense,
     // setBudgets,
     expenses,
     // setExpenses,

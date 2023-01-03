@@ -16,12 +16,6 @@ export const AddExpenseModal = ({
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(
-      'new spent',
-      descriptionRef.current.value,
-      amountRef.current.value,
-      budgetIdRef.current.value, selectedDate
-    )
     addExpense({
       date: selectedDate,
       description: descriptionRef.current.value,

@@ -6,17 +6,23 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useCategories } from '../contexts/CategoriesContext';
 
 export const EditExpenseModal = ({
-  show, handleClose, defaultCategory, isDisabled
+  show, handleClose, expense, defaultCategory, isDisabled
 }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const descriptionRef = useRef()
   const amountRef = useRef()
   const budgetIdRef = useRef()
-  const { budgets } = useCategories()
+  const { budgets, updateExpense } = useCategories()
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log("updated")
+    updateExpense({
+      date: selectedDate,
+      description: descriptionRef.current.value,
+      amount: parseFloat(amountRef.current.value),
+      budgetId: budgetIdRef.current.value,
+      expenseId: expense.id
+    })
     handleClose()
   }
 
@@ -30,6 +36,7 @@ export const EditExpenseModal = ({
           <Form.Group className="mb-3" controlId="amount">
             <Form.Label>Amount</Form.Label>
             <Form.Control
+              defaultValue={expense.amount}
               ref={amountRef}
               type="number"
               required
@@ -54,12 +61,13 @@ export const EditExpenseModal = ({
           </Form.Group>
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Description</Form.Label>
-            <Form.Control ref={descriptionRef} type="text" required />
+            <Form.Control ref={descriptionRef} type="text" required defaultValue={expense.description} />
           </Form.Group>
           <Form.Group controlId="formDate">
             <Form.Label>Date and Time</Form.Label>
             <DatePicker
               selected={selectedDate}
+              defaultValue={expense.description}
               onChange={(date) => setSelectedDate(date)}
               timeInputLabel="Time:"
               dateFormat="MM/dd/yyyy h:mm aa"

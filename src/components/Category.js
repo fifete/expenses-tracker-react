@@ -13,7 +13,7 @@ export const CategoryView = () => {
   const [showDeleteModalCategory, setShowDeleteModalCategory] = useState(false);
   const [showDeleteModalExpense, setShowDeleteModalExpense] = useState({ isOpen: false, expenseID: '' });
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
-  const [showEditExpenseModal, setShowEditExpenseModal] = useState(false)
+  const [showEditExpenseModal, setShowEditExpenseModal] = useState({ isOpen: false, expense: {} })
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -59,7 +59,11 @@ export const CategoryView = () => {
                     isOpen: true,
                     expenseID: expenseInfo.id
                   }))}
-                  handleShowEdit={() => setShowEditExpenseModal(true)}
+                  handleShowEdit={() => setShowEditExpenseModal(prev => ({
+                    ...prev,
+                    isOpen: true,
+                    expense: expenseInfo
+                  }))}
                 />
               ))
             }
@@ -96,8 +100,9 @@ export const CategoryView = () => {
       />
 
       <EditExpenseModal
-        show={showEditExpenseModal}
-        handleClose={() => setShowEditExpenseModal(false)}
+        show={showEditExpenseModal.isOpen}
+        handleClose={() => setShowEditExpenseModal(prev => ({ ...prev, isOpen: false }))}
+        expense={showEditExpenseModal.expense}
         defaultCategory={cardName}
         isDisabled={false}
       />

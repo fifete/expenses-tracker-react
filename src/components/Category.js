@@ -7,10 +7,11 @@ import { EditExpenseModal } from './modals/EditExpenseModal';
 import { Expense } from './Expense';
 import { OptionsModal } from './modals/OptionsModal'
 import { EditCategoryModal } from './modals/EditCategoryModal';
+import { ProgressBar } from 'react-bootstrap';
 
 export const CategoryView = () => {
   const { getBudgetExpenses, deleteExpense, deleteBudget } = useCategories()
-  const [showTooltip, setShowTooltip] = useState(false);
+
   const [showEditModalCategory, setShowEditModalCategory] = useState({ isOpen: false, category: {} });
   const [showDeleteModalCategory, setShowDeleteModalCategory] = useState(false);
   const [showDeleteModalExpense, setShowDeleteModalExpense] = useState({ isOpen: false, expenseID: '' });
@@ -22,9 +23,6 @@ export const CategoryView = () => {
   const { cardId, cardName, cardMax, cardAmount } = location.state ? location.state : { cardId: 0, cardName: 'current category', cardMax: 0, cardAmount: 0 }
   const expenses = getBudgetExpenses(cardId)
 
-  React.useEffect(() => {
-    setShowTooltip(!showDeleteModalCategory)
-  }, [showDeleteModalCategory])
   return (
     <>
       <div>
@@ -38,7 +36,6 @@ export const CategoryView = () => {
                 isOpen: true,
                 category: { id: cardId, name: cardName, max: cardMax }
               }))}
-              showTooltip={showTooltip}
             />
           </div>
           <div>
@@ -50,6 +47,15 @@ export const CategoryView = () => {
                 <h5> / ${cardMax}</h5>
               </div>
               <div className='categ-percent-bar'></div>
+              {cardMax && (
+                <ProgressBar
+                  className="rounded-pill"
+                  variant={getProgressBarVariant(cardAmount, cardMax)}
+                  min={0}
+                  max={cardMax}
+                  now={cardAmount}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -122,4 +128,14 @@ export const CategoryView = () => {
       />
     </>
   )
+}
+
+function getProgressBarVariant(amount, max) {
+  const ratio = amount / max
+  if (ratio < 0.5) {
+    return 'primary'
+  } else if (ratio < 0.75) {
+    return 'warning'
+  }
+  return 'danger'
 }

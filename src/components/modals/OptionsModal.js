@@ -1,35 +1,25 @@
-import React from 'react';
-import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
 
 export const OptionsModal = ({
-  handleShowDelete, handleShowEdit, showTooltip
+  handleShowDelete, handleShowEdit
 }) => {
-
+  const [showTooltip, setShowTooltip] = useState(false);
   const openTooltip = (
-    <Tooltip>
-      <div>
-        <Button className="btn btn-link p-0" onClick={handleShowEdit}>
-          Edit
-        </Button>
-        <Button className="btn btn-link p-0" onClick={() => handleShowDelete(true)}>
-          Delete
-        </Button>
-      </div>
-    </Tooltip>
+    <div onClick={() => setShowTooltip(false)}>
+      <Button className="btn btn-link p-0" onClick={handleShowEdit}>
+        Edit
+      </Button>
+      <Button className="btn btn-link p-0" onClick={() => handleShowDelete(true)}>
+        Delete
+      </Button>
+    </div>
   );
 
   return (
     <>
-      {showTooltip
-        ? <OverlayTrigger
-          placement="bottom"
-          overlay={openTooltip}
-          trigger="click"
-        >
-          <span>&#8942;</span>
-        </OverlayTrigger>
-        : <span>&#8942;</span>
-      }
+      {showTooltip && openTooltip}
+      <span onClick={() => setShowTooltip(prev => !prev)}>&#8942;</span>
     </>
   );
 }

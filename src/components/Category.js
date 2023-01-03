@@ -6,10 +6,12 @@ import { ConfirmModal } from './modals/ConfirmModal'
 import { EditExpenseModal } from './modals/EditExpenseModal';
 import { Expense } from './Expense';
 import { OptionsModal } from './modals/OptionsModal'
+import { EditCategoryModal } from './modals/EditCategoryModal';
 
 export const CategoryView = () => {
   const { getBudgetExpenses, deleteExpense, deleteBudget } = useCategories()
   const [showTooltip, setShowTooltip] = useState(false);
+  const [showEditModalCategory, setShowEditModalCategory] = useState({ isOpen: false, category: {} });
   const [showDeleteModalCategory, setShowDeleteModalCategory] = useState(false);
   const [showDeleteModalExpense, setShowDeleteModalExpense] = useState({ isOpen: false, expenseID: '' });
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
@@ -31,6 +33,11 @@ export const CategoryView = () => {
             <i onClick={() => navigate("/home")}>⬅</i>
             <OptionsModal
               handleShowDelete={setShowDeleteModalCategory}
+              handleShowEdit={() => setShowEditModalCategory(prev => ({
+                ...prev,
+                isOpen: true,
+                category: { id: cardId, name: cardName, max: cardMax }
+              }))}
               showTooltip={showTooltip}
             />
           </div>
@@ -92,6 +99,13 @@ export const CategoryView = () => {
           deleteExpense(showDeleteModalExpense.expenseID)
         }}
       />
+
+      <EditCategoryModal
+        show={showEditModalCategory.isOpen}
+        handleClose={() => setShowEditModalCategory(prev => ({ ...prev, isOpen: false }))}
+        category={showEditModalCategory.category}
+      />
+
       <AddExpenseModal
         show={showAddExpenseModal}
         handleClose={() => setShowAddExpenseModal(false)}

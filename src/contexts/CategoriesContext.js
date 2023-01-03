@@ -24,7 +24,7 @@ export function CategoriesProvider({ children }) {
   function updateExpense({ date, description, amount, budgetId, expenseId }) {
     setExpenses(prevExpenses => {
       const expenseToUpdate = prevExpenses.find(expense => expense.id === expenseId)
-      if(expenseToUpdate) {
+      if (expenseToUpdate) {
         expenseToUpdate.date = date
         expenseToUpdate.description = description
         expenseToUpdate.amount = amount
@@ -42,10 +42,21 @@ export function CategoriesProvider({ children }) {
 
   function addBudget({ name, max }) {
     setBudgets(prevBudgets => {
-      if(prevBudgets.find(budget => budget.name === name)) {
+      if (prevBudgets.find(budget => budget.name === name)) {
         return prevBudgets
       }
       return [...prevBudgets, { id: uuidv4(), name, max }]
+    })
+  }
+
+  function updateBudget({ name, max, id }) {
+    setBudgets(prevBudgets => {
+      const budgetToUpdate = prevBudgets.find(budget => budget.id === id)
+      if (budgetToUpdate) {
+        budgetToUpdate.name = name
+        budgetToUpdate.max = max
+      }
+      return prevBudgets
     })
   }
 
@@ -69,6 +80,7 @@ export function CategoriesProvider({ children }) {
     // setExpenses,
     deleteBudget,
     addBudget,
+    updateBudget,
     getBudgetExpenses
   }
 

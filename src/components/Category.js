@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCategories } from '../contexts/CategoriesContext'
-import { AddExpenseModal } from './AddExpenseModal';
-import { ConfirmModal } from './ConfirmModal'
-import { EditExpenseModal } from './EditExpenseModal';
+import { AddExpenseModal } from './modals/AddExpenseModal';
+import { ConfirmModal } from './modals/ConfirmModal'
+import { EditExpenseModal } from './modals/EditExpenseModal';
 import { Expense } from './Expense';
-import { OptionsModal } from './OptionsModal'
+import { OptionsModal } from './modals/OptionsModal'
 
 export const CategoryView = () => {
   const { getBudgetExpenses, deleteExpense, deleteBudget } = useCategories()

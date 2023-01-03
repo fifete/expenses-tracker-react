@@ -1,7 +1,7 @@
 import { Form, Modal, Button } from "react-bootstrap"
 
 import React, { useRef } from 'react'
-import { useCategories } from "../contexts/CategoriesContext"
+import { useCategories } from "../../contexts/CategoriesContext"
 
 export const AddCategoryModal = ({ show, handleClose }) => {
   const nameRef = useRef()

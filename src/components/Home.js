@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { AddCategoryModal } from './AddCategoryModal'
-import { AddExpenseModal } from './AddExpenseModal'
+import { AddCategoryModal } from './modals/AddCategoryModal'
+import { AddExpenseModal } from './modals/AddExpenseModal'
 import { Categories } from './Categories'
 import { Welcome } from './Welcome'
 

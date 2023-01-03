@@ -3,7 +3,7 @@ import { Form, Modal, Button } from "react-bootstrap"
 import DatePicker from 'react-datepicker';
 
 import "react-datepicker/dist/react-datepicker.css";
-import { useCategories } from '../contexts/CategoriesContext';
+import { useCategories } from '../../contexts/CategoriesContext';
 
 export const EditExpenseModal = ({
   show, handleClose, expense, defaultCategory, isDisabled

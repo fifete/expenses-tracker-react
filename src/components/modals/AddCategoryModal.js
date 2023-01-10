@@ -14,16 +14,11 @@ export const AddCategoryModal = ({ show, handleClose }) => {
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log({
-      name: nameRef.current.value,
-      max: maxRef.current.value,
-      color: colorRef.current.value,
-      emoji: selectedEmoji
-    })
     addBudget({
       name: nameRef.current.value,
       max: maxRef.current.value,
-      emoji: selectedEmoji
+      emoji: selectedEmoji,
+      color: colorRef.current.value
     })
     setSelectedEmoji('')
     handleClose()

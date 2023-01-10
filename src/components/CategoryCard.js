@@ -5,13 +5,15 @@ import { Link } from 'react-router-dom';
 export const CategoryCard = ({
   id, name,
   amount,
-  max
+  emoji,
+  max,
+  color
 }) => {
   return (
     <div>
-      <Link 
-      to="/other-page"
-      state={{
+      <Link
+        to="/other-page"
+        state={{
           cardId: id,
           cardName: name,
           cardAmount: amount,
@@ -19,7 +21,9 @@ export const CategoryCard = ({
         }}
       >
         <div>
-          <i>🍔</i>
+          <div style={{ border: `1px solid ${color}` }}>
+            <span>{emoji}</span>
+          </div>
           <p>{name}</p>
           <h2>${amount}</h2>
         </div>

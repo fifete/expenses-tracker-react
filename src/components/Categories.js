@@ -25,6 +25,8 @@ export const Categories = ({
               id={budget.id}
               name={budget.name}
               amount={amount}
+              emoji={budget.emoji}
+              color={budget.color}
               max={budget.max}
             />
           )

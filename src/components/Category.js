@@ -20,7 +20,7 @@ export const CategoryView = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { cardId, cardName, cardMax, cardAmount } = location.state ? location.state : { cardId: 0, cardName: 'current category', cardMax: 0, cardAmount: 0 }
+  const { cardId, cardName, cardMax, cardAmount, color, emoji } = location.state ? location.state : { cardId: 0, cardName: 'current category', cardMax: 0, cardAmount: 0 }
   const expenses = getBudgetExpenses(cardId)
 
   return (
@@ -34,12 +34,12 @@ export const CategoryView = () => {
               handleShowEdit={() => setShowEditModalCategory(prev => ({
                 ...prev,
                 isOpen: true,
-                category: { id: cardId, name: cardName, max: cardMax }
+                category: { id: cardId, name: cardName, max: cardMax,color, emoji }
               }))}
             />
           </div>
           <div>
-            <i>🍔</i>
+            <span>{emoji}</span>
             <h2>{cardName}</h2>
             <div>
               <div>

@@ -27,7 +27,7 @@ export const Categories = ({
               amount={amount}
               emoji={budget.emoji}
               color={budget.color}
-              max={budget.max}
+              max={budget.maxBudget}
             />
           )
         })}

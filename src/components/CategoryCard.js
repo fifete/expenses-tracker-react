@@ -17,7 +17,9 @@ export const CategoryCard = ({
           cardId: id,
           cardName: name,
           cardAmount: amount,
-          cardMax: max
+          cardMax: max,
+          color,
+          emoji
         }}
       >
         <div>

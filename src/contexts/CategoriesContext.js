@@ -73,12 +73,14 @@ export function CategoriesProvider({ children }) {
     })
   }
 
-  function updateBudget({ name, max, id }) {
+  function updateBudget({ name, max, color, emoji, id }) {
     setBudgets(prevBudgets => {
       const budgetToUpdate = prevBudgets.find(budget => budget.id === id)
       if (budgetToUpdate) {
         budgetToUpdate.name = name
         budgetToUpdate.max = max
+        budgetToUpdate.emoji = emoji
+        budgetToUpdate.color = color
       }
       return prevBudgets
     })

@@ -19,7 +19,9 @@ export const AddCategoryModal = ({ show, handleClose }) => {
       max: maxRef.current.value,
       emoji: selectedEmoji,
       color: colorRef.current.value
-    })
+    }).catch(error => {
+      console.log(error.message)
+    });
     setSelectedEmoji('')
     handleClose()
   }

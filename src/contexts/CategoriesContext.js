@@ -40,12 +40,36 @@ export function CategoriesProvider({ children }) {
     })
   }
 
-  function addBudget({ name, max, emoji, color }) {
+  async function addBudget({ name, max, emoji, color }) {
+    const category = {
+      userIdTemp: uuidv4(),
+      name,
+      maxBudget: max,
+      emoji,
+      color
+    }
+
+    const response = await fetch('https://localhost:7285/api/Categories', {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(category)
+    });
+
+    if (!response.ok) {
+      console.log(response)
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+    
+    const addBudgetResponse = await response.json();
     setBudgets(prevBudgets => {
       if (prevBudgets.find(budget => budget.name === name)) {
         return prevBudgets
       }
-      return [...prevBudgets, { id: uuidv4(), name, max, emoji, color }]
+      return [...prevBudgets, addBudgetResponse]
     })
   }
 

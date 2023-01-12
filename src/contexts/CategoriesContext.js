@@ -11,13 +11,39 @@ export function CategoriesProvider({ children }) {
   const [budgets, setBudgets] = useState([])
   const [expenses, setExpenses] = useState([])
 
-  function getBudgetExpenses(budgetId) {
-    return expenses.filter(expense => expense.budgetId === budgetId)
+  function getCategoryExpenses(budgetId) {
+    return expenses.filter(expense => expense.categoryId === budgetId)
   }
 
-  function addExpense({ date, description, amount, budgetId }) {
+  async function addExpense({ date, time, description, amount, budgetId }) {
+    const expense = {
+      categoryId: budgetId,
+      description: description,
+      amount: amount,
+      date: date,
+      time: time        
+    }
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(expense)
+    }
+
+    const response = await fetch('https://localhost:7285/api/Expenses', requestOptions);
+    if (!response.ok) {
+      console.log(response)
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+
+    const expenseResponse = await response.json();
+    console.log(expenseResponse)
     setExpenses(prevExpenses => {
-      return [...prevExpenses, { id: uuidv4(), description, amount, budgetId, date }]
+      return [...prevExpenses, expenseResponse]
     })
   }
 
@@ -158,7 +184,7 @@ export function CategoriesProvider({ children }) {
     deleteBudget,
     addBudget,
     updateBudget,
-    getBudgetExpenses
+    getBudgetExpenses: getCategoryExpenses
   }
 
   return (

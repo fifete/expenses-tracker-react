@@ -17,7 +17,8 @@ export const AddExpenseModal = ({
   function handleSubmit(e) {
     e.preventDefault()
     addExpense({
-      date: selectedDate,
+      date: selectedDate.toLocaleString().split(',')[0],
+      time: selectedDate.toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }),
       description: descriptionRef.current.value,
       amount: parseFloat(amountRef.current.value),
       budgetId: budgetIdRef.current.value,

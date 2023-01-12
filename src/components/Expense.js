@@ -4,6 +4,7 @@ import { useCategories } from '../contexts/CategoriesContext'
 import { Stack } from 'react-bootstrap'
 
 export const Expense = ({ expense, handleShowDelete, handleShowEdit }) => {
+    console.log('expense', expense.date)
     return (
         <>
             <div className='categ-spent'>
@@ -13,8 +14,8 @@ export const Expense = ({ expense, handleShowDelete, handleShowEdit }) => {
                         <h5>${expense.amount}</h5>
                     </div>
                     <div>
-                        <p>{expense.date.toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' })}</p>
-                        <p>{expense.date.toLocaleString().split(',')[0]}</p>
+                        <p>{expense.date}</p>
+                        <p>{expense.time}</p>
                     </div>
                 </Stack>
                 <div className='spent-edit-tools'>

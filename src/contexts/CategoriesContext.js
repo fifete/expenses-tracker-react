@@ -34,10 +34,24 @@ export function CategoriesProvider({ children }) {
     })
   }
 
-  function deleteExpense(expenseID) {
+  async function deleteExpense(expenseID) {
+    const requestOptions = { method: "DELETE" }
+
+    const response = await fetch(`https://localhost:7285/api/Expenses/${expenseID}`, requestOptions);
+
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+
     setExpenses(prevExpenses => {
       return prevExpenses.filter(expense => expense.id !== expenseID)
     })
+  }
+
+
+  function getBudgetById(budgetId) {
+    return budgets.find(budget => budget.id === budgetId)
   }
 
   async function addBudget({ name, max, emoji, color }) {
@@ -45,25 +59,27 @@ export function CategoriesProvider({ children }) {
       userIdTemp: uuidv4(),
       name,
       maxBudget: max,
+      spendingAmount: 0,
       emoji,
       color
     }
 
-    const response = await fetch('https://localhost:7285/api/Categories', {
+    const requestOptions = {
       method: "POST",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(category)
-    });
+    }
 
+    const response = await fetch('https://localhost:7285/api/Categories', requestOptions);
     if (!response.ok) {
       console.log(response)
       const message = `An error has occured: ${response.status}`;
       throw new Error(message);
     }
-    
+
     const addBudgetResponse = await response.json();
     setBudgets(prevBudgets => {
       if (prevBudgets.find(budget => budget.name === name)) {
@@ -73,20 +89,54 @@ export function CategoriesProvider({ children }) {
     })
   }
 
-  function updateBudget({ name, max, color, emoji, id }) {
+  async function updateBudget({ name, max, color, emoji, id }) {
+    const updatedCategory = {
+      id,
+      name,
+      maxBudget: max,
+      emoji,
+      color
+    }
+
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedCategory)
+    }
+
+    const response = await fetch(`https://localhost:7285/api/Categories/${id}`, requestOptions);
+
+    if (!response.ok) {
+      console.log(response)
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+
+    const UpdatedBudgetResponse = await response.json();
+    console.log(UpdatedBudgetResponse)
+    ///////////////////////////////
     setBudgets(prevBudgets => {
-      const budgetToUpdate = prevBudgets.find(budget => budget.id === id)
+      let budgetToUpdate = prevBudgets.find(budget => budget.id === id)
       if (budgetToUpdate) {
-        budgetToUpdate.name = name
-        budgetToUpdate.max = max
-        budgetToUpdate.emoji = emoji
-        budgetToUpdate.color = color
+        budgetToUpdate = { ...UpdatedBudgetResponse }
       }
       return prevBudgets
     })
   }
 
-  function deleteBudget(id) {
+  async function deleteBudget(id) {
+    const requestOptions = { method: "DELETE" }
+
+    const response = await fetch(`https://localhost:7285/api/Categories/${id}`, requestOptions);
+
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+
     setExpenses(prevExpenses => {
       return prevExpenses.filter(expense => expense.id !== id)
     })
@@ -104,6 +154,7 @@ export function CategoriesProvider({ children }) {
     // setBudgets,
     expenses,
     // setExpenses,
+    getBudgetById,
     deleteBudget,
     addBudget,
     updateBudget,

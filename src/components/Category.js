@@ -10,7 +10,7 @@ import { EditCategoryModal } from './modals/EditCategoryModal';
 import { ProgressBar } from 'react-bootstrap';
 
 export const CategoryView = () => {
-  const { getBudgetExpenses, deleteExpense, deleteBudget } = useCategories()
+  const { getBudgetById, getBudgetExpenses, deleteExpense, deleteBudget } = useCategories()
 
   const [showEditModalCategory, setShowEditModalCategory] = useState({ isOpen: false, category: {} });
   const [showDeleteModalCategory, setShowDeleteModalCategory] = useState(false);
@@ -20,7 +20,8 @@ export const CategoryView = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { cardId, cardName, cardMax, cardAmount, color, emoji } = location.state ? location.state : { cardId: 0, cardName: 'current category', cardMax: 0, cardAmount: 0 }
+  const { cardId } = location.state ? location.state : { name: 'Reload the page'}
+  const { maxBudget, SpendingAmount, name, color, emoji} = getBudgetById(cardId)
   const expenses = getBudgetExpenses(cardId)
 
   return (
@@ -34,26 +35,26 @@ export const CategoryView = () => {
               handleShowEdit={() => setShowEditModalCategory(prev => ({
                 ...prev,
                 isOpen: true,
-                category: { id: cardId, name: cardName, max: cardMax,color, emoji }
+                category: { id: cardId, name, max: maxBudget,color, emoji }
               }))}
             />
           </div>
           <div>
             <span>{emoji}</span>
-            <h2>{cardName}</h2>
+            <h2>{name}</h2>
             <div>
               <div>
-                <h5>${cardAmount}</h5>
-                <h5> / ${cardMax}</h5>
+                <h5>${SpendingAmount}</h5>
+                <h5> / ${maxBudget}</h5>
               </div>
               <div className='categ-percent-bar'></div>
-              {cardMax && (
+              {maxBudget && (
                 <ProgressBar
                   className="rounded-pill"
-                  variant={getProgressBarVariant(cardAmount, cardMax)}
+                  variant={getProgressBarVariant(SpendingAmount, maxBudget)}
                   min={0}
-                  max={cardMax}
-                  now={cardAmount}
+                  max={maxBudget}
+                  now={SpendingAmount}
                 />
               )}
             </div>
@@ -115,7 +116,7 @@ export const CategoryView = () => {
       <AddExpenseModal
         show={showAddExpenseModal}
         handleClose={() => setShowAddExpenseModal(false)}
-        defaultCategory={cardName}
+        defaultCategory={name}
         isDisabled={true}
       />
 
@@ -123,7 +124,7 @@ export const CategoryView = () => {
         show={showEditExpenseModal.isOpen}
         handleClose={() => setShowEditExpenseModal(prev => ({ ...prev, isOpen: false }))}
         expense={showEditExpenseModal.expense}
-        defaultCategory={cardName}
+        defaultCategory={name}
         isDisabled={false}
       />
     </>

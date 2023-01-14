@@ -17,10 +17,10 @@ export const EditExpenseModal = ({
   function handleSubmit(e) {
     e.preventDefault()
     updateExpense({
-      date: selectedDate,
+      date: selectedDate.toLocaleString().split(',')[0],
+      time: selectedDate.toLocaleTimeString(navigator.language, { hour: '2-digit', minute: '2-digit' }),
       description: descriptionRef.current.value,
       amount: parseFloat(amountRef.current.value),
-      budgetId: budgetIdRef.current.value,
       expenseId: expense.id
     })
     handleClose()

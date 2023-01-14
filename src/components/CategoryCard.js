@@ -1,7 +1,7 @@
 import React from 'react'
 import { ProgressBar } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
-// https://github.com/missive/emoji-mart#-picker
+
 export const CategoryCard = ({
   id, name,
   amount,
@@ -15,9 +15,9 @@ export const CategoryCard = ({
         to="/other-page"
         state={{
           cardId: id,
-          cardName: name,
-          cardAmount: amount,
-          cardMax: max,
+          name,
+          spendingAmount: amount,
+          maxBudget: max,
           color,
           emoji
         }}

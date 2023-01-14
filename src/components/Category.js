@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCategories } from '../contexts/CategoriesContext'
 import { AddExpenseModal } from './modals/AddExpenseModal';
@@ -10,8 +10,9 @@ import { EditCategoryModal } from './modals/EditCategoryModal';
 import { ProgressBar } from 'react-bootstrap';
 
 export const CategoryView = () => {
-  const { getBudgetById, getBudgetExpenses, deleteExpense, deleteBudget } = useCategories()
+  const { isUpdatedCategory, getBudgetById, getBudgetExpenses, deleteExpense, deleteBudget } = useCategories()
 
+  const [category, setCategory] = useState(false);
   const [showEditModalCategory, setShowEditModalCategory] = useState({ isOpen: false, category: {} });
   const [showDeleteModalCategory, setShowDeleteModalCategory] = useState(false);
   const [showDeleteModalExpense, setShowDeleteModalExpense] = useState({ isOpen: false, expenseID: '' });
@@ -20,46 +21,105 @@ export const CategoryView = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { cardId } = location.state ? location.state : { name: 'Reload the page'}
-  const { maxBudget, SpendingAmount, name, color, emoji} = getBudgetById(cardId)
+  const { cardId, maxBudget, spendingAmount, name, color, emoji } = location.state ? location.state : { name: 'Reload the page' }
   const expenses = getBudgetExpenses(cardId)
+
+  useEffect(() => {
+    console.log(isUpdatedCategory)
+    if (isUpdatedCategory) {
+      console.log(getBudgetById(cardId))
+      setCategory(prev => ({ ...prev, ...getBudgetById(cardId) }))
+      console.log('updating')
+    }
+  }, [isUpdatedCategory])
+
 
   return (
     <>
       <div>
-        <div>
-          <div>
-            <i onClick={() => navigate("/home")}>⬅</i>
-            <OptionsModal
-              handleShowDelete={setShowDeleteModalCategory}
-              handleShowEdit={() => setShowEditModalCategory(prev => ({
-                ...prev,
-                isOpen: true,
-                category: { id: cardId, name, max: maxBudget,color, emoji }
-              }))}
-            />
-          </div>
-          <div>
-            <span>{emoji}</span>
-            <h2>{name}</h2>
+        {
+          category ?
             <div>
               <div>
-                <h5>${SpendingAmount}</h5>
-                <h5> / ${maxBudget}</h5>
-              </div>
-              <div className='categ-percent-bar'></div>
-              {maxBudget && (
-                <ProgressBar
-                  className="rounded-pill"
-                  variant={getProgressBarVariant(SpendingAmount, maxBudget)}
-                  min={0}
-                  max={maxBudget}
-                  now={SpendingAmount}
+                <i onClick={() => navigate("/home")}>⬅</i>
+                <OptionsModal
+                  handleShowDelete={setShowDeleteModalCategory}
+                  handleShowEdit={() => setShowEditModalCategory(prev => ({
+                    ...prev,
+                    isOpen: true,
+                    category: {
+                      id: cardId,
+                      name: category.name,
+                      max: category.maxBudget,
+                      color: category.color,
+                      emoji: category.emoji
+                    }
+                  }))}
                 />
-              )}
+              </div>
+              <div>
+                <span>{category.emoji}</span>
+                <h2>{category.name}</h2>
+                <div>
+                  <div>
+                    <h5>${spendingAmount}</h5>
+                    <h5> / ${category.maxBudget}</h5>
+                  </div>
+                  <div className='categ-percent-bar'></div>
+                  {maxBudget && (
+                    <ProgressBar
+                      className="rounded-pill"
+                      variant={getProgressBarVariant(spendingAmount, category.maxBudget)}
+                      min={0}
+                      max={category.maxBudget}
+                      now={spendingAmount}
+                    />
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+            :
+            <div>
+              <div>
+                <i onClick={() => navigate("/home")}>⬅</i>
+                <OptionsModal
+                  handleShowDelete={setShowDeleteModalCategory}
+                  handleShowEdit={() => setShowEditModalCategory(prev => ({
+                    ...prev,
+                    isOpen: true,
+                    category: {
+                      id: cardId,
+                      name: name,
+                      max: maxBudget,
+                      color: color,
+                      emoji: emoji
+                    }
+                  }))}
+                />
+              </div>
+              <div>
+                <span>{emoji}</span>
+                <h2>{name}</h2>
+                <div>
+                  <div>
+                    <h5>${spendingAmount}</h5>
+                    <h5> / ${maxBudget}</h5>
+                  </div>
+                  <div className='categ-percent-bar'></div>
+                  {maxBudget && (
+                    <ProgressBar
+                      className="rounded-pill"
+                      variant={getProgressBarVariant(spendingAmount, maxBudget)}
+                      min={0}
+                      max={maxBudget}
+                      now={spendingAmount}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+        }
+
         <div>
           <button onClick={() => setShowAddExpenseModal(true)}>Add Expense</button>
           <div className='categ-expenses'>
@@ -116,7 +176,7 @@ export const CategoryView = () => {
       <AddExpenseModal
         show={showAddExpenseModal}
         handleClose={() => setShowAddExpenseModal(false)}
-        defaultCategory={name}
+        defaultCategory={category ? category.name : name}
         isDisabled={true}
       />
 
@@ -124,7 +184,7 @@ export const CategoryView = () => {
         show={showEditExpenseModal.isOpen}
         handleClose={() => setShowEditExpenseModal(prev => ({ ...prev, isOpen: false }))}
         expense={showEditExpenseModal.expense}
-        defaultCategory={name}
+        defaultCategory={category ? category.name : name}
         isDisabled={false}
       />
     </>

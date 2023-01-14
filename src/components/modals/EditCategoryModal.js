@@ -16,6 +16,7 @@ export const EditCategoryModal = ({ show, handleClose, category }) => {
 
   function handleSubmit(e) {
     e.preventDefault()
+    console.log(selectedEmoji)
     updateBudget({
       id: category.id,
       name: nameRef.current.value,

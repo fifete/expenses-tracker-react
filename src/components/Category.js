@@ -10,7 +10,12 @@ import { EditCategoryModal } from './modals/EditCategoryModal';
 import { ProgressBar } from 'react-bootstrap';
 
 export const CategoryView = () => {
-  const { isUpdatedCategory, getBudgetById, getBudgetExpenses, deleteExpense, deleteBudget } = useCategories()
+  const {
+    isUpdatedCategory, setIsUpdatedCategory,
+    isUpdatedExpense, setIsUpdatedExpense,
+    getBudgetById, getBudgetExpenses,
+    deleteExpense, deleteBudget
+  } = useCategories()
 
   const [category, setCategory] = useState(false);
   const [showEditModalCategory, setShowEditModalCategory] = useState({ isOpen: false, category: {} });
@@ -25,14 +30,11 @@ export const CategoryView = () => {
   const expenses = getBudgetExpenses(cardId)
 
   useEffect(() => {
-    console.log(isUpdatedCategory)
     if (isUpdatedCategory) {
-      console.log(getBudgetById(cardId))
       setCategory(prev => ({ ...prev, ...getBudgetById(cardId) }))
-      console.log('updating')
     }
+    setIsUpdatedCategory(false)
   }, [isUpdatedCategory])
-
 
   return (
     <>

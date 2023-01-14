@@ -11,6 +11,7 @@ export function CategoriesProvider({ children }) {
   const [budgets, setBudgets] = useState([])
   const [expenses, setExpenses] = useState([])
   const [isUpdatedCategory, setIsUpdatedCategory] = useState(false)
+  const [isUpdatedExpense, setIsUpdatedExpense] = useState(false)
 
   function getCategoryExpenses(budgetId) {
     return expenses.filter(expense => expense.categoryId === budgetId)
@@ -73,15 +74,20 @@ export function CategoriesProvider({ children }) {
       throw new Error(message);
     }
 
+    const UpdatedExpenseResponse = await response.json();
+
     setExpenses(prevExpenses => {
-      const expenseToUpdate = prevExpenses.find(expense => expense.id === expenseId)
-      if (expenseToUpdate) {
-        expenseToUpdate.date = date
-        expenseToUpdate.description = description
-        expenseToUpdate.amount = amount
+      const ExpenseToUpdate = prevExpenses.find(expense => expense.id === expenseId)
+      if (ExpenseToUpdate) {
+        ExpenseToUpdate.date = UpdatedExpenseResponse.date
+        ExpenseToUpdate.time = UpdatedExpenseResponse.time
+        ExpenseToUpdate.amount = UpdatedExpenseResponse.amount
+        ExpenseToUpdate.description = UpdatedExpenseResponse.description 
       }
       return prevExpenses
     })
+
+    setIsUpdatedExpense(true)
   }
 
   async function deleteExpense(expenseID) {
@@ -175,7 +181,7 @@ export function CategoriesProvider({ children }) {
       return prevBudgets
     })
 
-    setIsUpdatedCategory(prev => !prev)
+    setIsUpdatedCategory(true)
   }
 
   async function deleteBudget(id) {
@@ -206,11 +212,10 @@ export function CategoriesProvider({ children }) {
     deleteBudget,
     updateExpense,
     updateBudget,
-    // setBudgets,
-    // setExpenses,
     getBudgetById,
     getBudgetExpenses: getCategoryExpenses,
-    isUpdatedCategory
+    isUpdatedCategory, setIsUpdatedCategory,
+    isUpdatedExpense, setIsUpdatedExpense
   }
 
   return (

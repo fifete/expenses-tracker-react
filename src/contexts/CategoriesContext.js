@@ -105,6 +105,19 @@ export function CategoriesProvider({ children }) {
     })
   }
 
+  async function getBudgets() {
+    const response = await fetch("https://localhost:7285/api/Categories/");
+
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+
+    const budgets = await response.json();
+
+    setBudgets(budgets)
+  }
+
   function getBudgetById(budgetId) {
     return budgets.find(budget => budget.id === budgetId)
   }
@@ -206,6 +219,7 @@ export function CategoriesProvider({ children }) {
   const value = {
     budgets,
     expenses,
+    getBudgets,
     addExpense,
     addBudget,
     deleteExpense,

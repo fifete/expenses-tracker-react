@@ -5,7 +5,8 @@ import { CategoryCard } from './CategoryCard'
 export const Categories = ({
   handleShow
 }) => {
-  const { budgets, getBudgetExpenses } = useCategories()
+  const { budgets, getBudgets, getBudgetExpenses } = useCategories()
+  const budgetsResponse = getBudgets()
 
   return (
     <div className='categories'>
@@ -14,23 +15,28 @@ export const Categories = ({
         <button onClick={() => handleShow(true)}>+</button>
       </div>
       <div className='categories-cards'>
-        {budgets.map(budget => {
-          const amount = getBudgetExpenses(budget.id).reduce(
-            (total, expense) => total + expense.amount,
-            0
-          )
-          return (
-            <CategoryCard
-              key={budget.id}
-              id={budget.id}
-              name={budget.name}
-              amount={amount}
-              emoji={budget.emoji}
-              color={budget.color}
-              max={budget.maxBudget}
-            />
-          )
-        })}
+        {
+          budgets ?
+            budgets.map(budget => {
+              const amount = getBudgetExpenses(budget.id).reduce(
+                (total, expense) => total + expense.amount,
+                0
+              )
+              return (
+                <CategoryCard
+                  key={budget.id}
+                  id={budget.id}
+                  name={budget.name}
+                  amount={amount}
+                  emoji={budget.emoji}
+                  color={budget.color}
+                  max={budget.maxBudget}
+                />
+              )
+            }) :
+            <div>Reload Page</div>
+        }
+
       </div>
     </div>
   )

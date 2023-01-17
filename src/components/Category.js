@@ -10,7 +10,8 @@ import { EditCategoryModal } from './modals/EditCategoryModal';
 import { ProgressBar } from 'react-bootstrap';
 
 export const CategoryView = () => {
-  const {expenses,
+  const {
+    expenses,
     isUpdatedCategory, setIsUpdatedCategory,
     isUpdatedExpense, setIsUpdatedExpense,
     getBudgetById, getBudgetExpenses,
@@ -27,15 +28,10 @@ export const CategoryView = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { cardId, maxBudget, spendingAmount, name, color, emoji } = location.state ? location.state : { name: 'Reload the page' }
-  // let expenses = getBudgetExpenses(cardId)
+
   useEffect(() => {
     getBudgetExpenses(cardId)
   }, [])
-  
-
-  // if(!isUpdatedExpense){
-  //   expenses = getBudgetExpenses(cardId)
-  // }
 
   useEffect(() => {
     if (isUpdatedCategory) {

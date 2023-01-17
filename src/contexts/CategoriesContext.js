@@ -52,11 +52,12 @@ export function CategoriesProvider({ children }) {
       throw new Error(message);
     }
 
-    const expenseResponse = await response.json();
-    console.log(expenseResponse)
-    setExpenses(prevExpenses => {
-      return [...prevExpenses, expenseResponse]
-    })
+    // const expenseResponse = await response.json();
+    // console.log(expenseResponse)
+    // setExpenses(prevExpenses => {
+    //   return [...prevExpenses, expenseResponse]
+    // })
+    getCategoryExpenses(budgetId)
   }
 
   async function updateExpense({ date, time, description, amount, expenseId }) {

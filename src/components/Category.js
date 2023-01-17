@@ -13,7 +13,6 @@ export const CategoryView = () => {
   const {
     expenses,
     isUpdatedCategory, setIsUpdatedCategory,
-    isUpdatedExpense, setIsUpdatedExpense,
     getBudgetById, getBudgetExpenses,
     deleteExpense, deleteBudget
   } = useCategories()
@@ -36,17 +35,9 @@ export const CategoryView = () => {
   useEffect(() => {
     if (isUpdatedCategory) {
       setCategory(prev => ({ ...prev, ...getBudgetById(cardId) }))
+      setIsUpdatedCategory(false)
     }
-    setIsUpdatedCategory(false)
   }, [isUpdatedCategory])
-
-  useEffect(() => {
-    // if (isUpdatedExpense) {
-    //   setCategory(prev => ({ ...prev, expenses: getBudgetExpenses(cardId) }))
-    // }
-    console.log('updated expense')
-    setIsUpdatedExpense(false)
-  }, [isUpdatedExpense])
 
   return (
     <>

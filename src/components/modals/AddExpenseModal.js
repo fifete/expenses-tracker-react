@@ -8,7 +8,6 @@ import { useCategories } from '../../contexts/CategoriesContext';
 export const AddExpenseModal = ({
   show, handleClose, defaultCategory, isDisabled
 }) => {
-  console.log(defaultCategory)
   const [selectedDate, setSelectedDate] = useState(new Date());
   const descriptionRef = useRef()
   const amountRef = useRef()

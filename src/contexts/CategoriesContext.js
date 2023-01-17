@@ -11,7 +11,6 @@ export function CategoriesProvider({ children }) {
   const [budgets, setBudgets] = useState([])
   const [expenses, setExpenses] = useState([])
   const [isUpdatedCategory, setIsUpdatedCategory] = useState(false)
-  const [isUpdatedExpense, setIsUpdatedExpense] = useState(false)
 
   async function getCategoryExpenses(budgetId) {
     const response = await fetch(`https://localhost:7285/api/Expenses?categoryId=${budgetId}`);
@@ -81,19 +80,7 @@ export function CategoriesProvider({ children }) {
 
     const UpdatedExpenseResponse = await response.json();
 
-    // setExpenses(prevExpenses => {
-    //   const ExpenseToUpdate = prevExpenses.find(expense => expense.id === expenseId)
-    //   if (ExpenseToUpdate) {
-    //     ExpenseToUpdate.date = UpdatedExpenseResponse.date
-    //     ExpenseToUpdate.time = UpdatedExpenseResponse.time
-    //     ExpenseToUpdate.amount = UpdatedExpenseResponse.amount
-    //     ExpenseToUpdate.description = UpdatedExpenseResponse.description 
-    //   }
-    //   return prevExpenses
-    // })
     getCategoryExpenses(UpdatedExpenseResponse.categoryId)
-
-    setIsUpdatedExpense(true)
   }
 
   async function deleteExpense(expenseID) {
@@ -189,16 +176,16 @@ export function CategoriesProvider({ children }) {
 
     const UpdatedBudgetResponse = await response.json();
 
-    // setBudgets(prevBudgets => {
-    //   const budgetToUpdate = prevBudgets.find(budget => budget.id === id)
-    //   if (budgetToUpdate) {
-    //     budgetToUpdate.name = UpdatedBudgetResponse.name
-    //     budgetToUpdate.maxBudget = UpdatedBudgetResponse.maxBudget
-    //     budgetToUpdate.emoji = UpdatedBudgetResponse.emoji
-    //     budgetToUpdate.color = UpdatedBudgetResponse.color 
-    //   }
-    //   return prevBudgets
-    // })
+    setBudgets(prevBudgets => {
+      const budgetToUpdate = prevBudgets.find(budget => budget.id === id)
+      if (budgetToUpdate) {
+        budgetToUpdate.name = UpdatedBudgetResponse.name
+        budgetToUpdate.maxBudget = UpdatedBudgetResponse.maxBudget
+        budgetToUpdate.emoji = UpdatedBudgetResponse.emoji
+        budgetToUpdate.color = UpdatedBudgetResponse.color 
+      }
+      return prevBudgets
+    })
 
     setIsUpdatedCategory(true)
   }
@@ -235,7 +222,6 @@ export function CategoriesProvider({ children }) {
     getBudgetById,
     getBudgetExpenses: getCategoryExpenses,
     isUpdatedCategory, setIsUpdatedCategory,
-    isUpdatedExpense, setIsUpdatedExpense
   }
 
   return (

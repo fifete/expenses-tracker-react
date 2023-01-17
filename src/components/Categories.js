@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useCategories } from '../contexts/CategoriesContext'
 import { CategoryCard } from './CategoryCard'
 
@@ -6,7 +6,11 @@ export const Categories = ({
   handleShow
 }) => {
   const { budgets, getBudgets, getBudgetExpenses } = useCategories()
-  const budgetsResponse = getBudgets()
+  useEffect(() => {
+    getBudgets();
+  }, []);
+
+  let amount
 
   return (
     <div className='categories'>
@@ -16,12 +20,15 @@ export const Categories = ({
       </div>
       <div className='categories-cards'>
         {
-          budgets ?
             budgets.map(budget => {
-              const amount = getBudgetExpenses(budget.id).reduce(
-                (total, expense) => total + expense.amount,
-                0
-              )
+              {/* const test = getBudgetExpenses(budget.id)
+              if (!test) {
+                const amount = test.reduce(
+                  (total, expense) => total + expense.spendingAmount,
+                  0
+                )
+              } else amount = 0 */}
+              amount = 0
               return (
                 <CategoryCard
                   key={budget.id}
@@ -33,8 +40,7 @@ export const Categories = ({
                   max={budget.maxBudget}
                 />
               )
-            }) :
-            <div>Reload Page</div>
+            })
         }
 
       </div>

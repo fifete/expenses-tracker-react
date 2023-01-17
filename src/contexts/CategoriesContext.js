@@ -13,10 +13,20 @@ export function CategoriesProvider({ children }) {
   const [isUpdatedCategory, setIsUpdatedCategory] = useState(false)
   const [isUpdatedExpense, setIsUpdatedExpense] = useState(false)
 
-  function getCategoryExpenses(budgetId) {
-    return expenses.filter(expense => expense.categoryId === budgetId)
-  }
+  async function getCategoryExpenses(budgetId) {
+    const response = await fetch(`https://localhost:7285/api/Expenses?categoryId=${budgetId}`);
 
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+
+    const expenses = await response.json();
+
+    setExpenses(expenses)
+  }
+  // return expenses.filter(expense => expense.categoryId === budgetId)
+  
   async function addExpense({ date, time, description, amount, budgetId }) {
     const expense = {
       categoryId: budgetId,

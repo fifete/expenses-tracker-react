@@ -25,7 +25,6 @@ export function CategoriesProvider({ children }) {
 
     setExpenses(expenses)
   }
-  // return expenses.filter(expense => expense.categoryId === budgetId)
   
   async function addExpense({ date, time, description, amount, budgetId }) {
     const expense = {
@@ -52,11 +51,6 @@ export function CategoriesProvider({ children }) {
       throw new Error(message);
     }
 
-    // const expenseResponse = await response.json();
-    // console.log(expenseResponse)
-    // setExpenses(prevExpenses => {
-    //   return [...prevExpenses, expenseResponse]
-    // })
     getCategoryExpenses(budgetId)
   }
 
@@ -87,16 +81,17 @@ export function CategoriesProvider({ children }) {
 
     const UpdatedExpenseResponse = await response.json();
 
-    setExpenses(prevExpenses => {
-      const ExpenseToUpdate = prevExpenses.find(expense => expense.id === expenseId)
-      if (ExpenseToUpdate) {
-        ExpenseToUpdate.date = UpdatedExpenseResponse.date
-        ExpenseToUpdate.time = UpdatedExpenseResponse.time
-        ExpenseToUpdate.amount = UpdatedExpenseResponse.amount
-        ExpenseToUpdate.description = UpdatedExpenseResponse.description 
-      }
-      return prevExpenses
-    })
+    // setExpenses(prevExpenses => {
+    //   const ExpenseToUpdate = prevExpenses.find(expense => expense.id === expenseId)
+    //   if (ExpenseToUpdate) {
+    //     ExpenseToUpdate.date = UpdatedExpenseResponse.date
+    //     ExpenseToUpdate.time = UpdatedExpenseResponse.time
+    //     ExpenseToUpdate.amount = UpdatedExpenseResponse.amount
+    //     ExpenseToUpdate.description = UpdatedExpenseResponse.description 
+    //   }
+    //   return prevExpenses
+    // })
+    getCategoryExpenses(UpdatedExpenseResponse.categoryId)
 
     setIsUpdatedExpense(true)
   }
@@ -194,16 +189,16 @@ export function CategoriesProvider({ children }) {
 
     const UpdatedBudgetResponse = await response.json();
 
-    setBudgets(prevBudgets => {
-      const budgetToUpdate = prevBudgets.find(budget => budget.id === id)
-      if (budgetToUpdate) {
-        budgetToUpdate.name = UpdatedBudgetResponse.name
-        budgetToUpdate.maxBudget = UpdatedBudgetResponse.maxBudget
-        budgetToUpdate.emoji = UpdatedBudgetResponse.emoji
-        budgetToUpdate.color = UpdatedBudgetResponse.color 
-      }
-      return prevBudgets
-    })
+    // setBudgets(prevBudgets => {
+    //   const budgetToUpdate = prevBudgets.find(budget => budget.id === id)
+    //   if (budgetToUpdate) {
+    //     budgetToUpdate.name = UpdatedBudgetResponse.name
+    //     budgetToUpdate.maxBudget = UpdatedBudgetResponse.maxBudget
+    //     budgetToUpdate.emoji = UpdatedBudgetResponse.emoji
+    //     budgetToUpdate.color = UpdatedBudgetResponse.color 
+    //   }
+    //   return prevBudgets
+    // })
 
     setIsUpdatedCategory(true)
   }

@@ -190,7 +190,7 @@ export const CategoryView = () => {
       <AddExpenseModal
         show={showAddExpenseModal}
         handleClose={() => setShowAddExpenseModal(false)}
-        defaultCategory={category ? category.name : name}
+        defaultCategory={category ? category.id : cardId}
         isDisabled={true}
       />
 

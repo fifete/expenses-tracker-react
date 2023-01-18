@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react'
 import { useCategories } from "../../contexts/CategoriesContext"
 import { PickEmoji } from "./PickEmoji"
 import { colors } from "../../data/colors"
+import { NameInputCategory } from "./NameInputCategory"
 
 export const EditCategoryModal = ({ show, handleClose, category }) => {
   const nameRef = useRef()
@@ -13,17 +14,9 @@ export const EditCategoryModal = ({ show, handleClose, category }) => {
   const { updateBudget } = useCategories()
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const [selectedEmoji, setSelectedEmoji] = useState(category.emoji)
-  const [descriptionLength, setDescriptionLength] = useState(() => {
-    return category.name ? category.name.split(" ").join('').length : 0
-  });
-
-  const handleDescriptionChange = (e) => {
-    setDescriptionLength(e.target.value.split(" ").join('').length);
-  }
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(selectedEmoji)
     updateBudget({
       id: category.id,
       name: nameRef.current.value,
@@ -42,18 +35,8 @@ export const EditCategoryModal = ({ show, handleClose, category }) => {
           <Modal.Title>Edit Category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Group className="mb-3" controlId="name">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              ref={nameRef}
-              maxLength={25}
-              onChange={handleDescriptionChange}
-              type="text" required
-              defaultValue={category.name} />
-            <Form.Text className="text-muted">
-              {descriptionLength}/20 characters used
-            </Form.Text>
-          </Form.Group>
+          <NameInputCategory nameRef={nameRef} name={category.name}/>
+          
           <Form.Group className="mb-3" controlId="max">
             <Form.Label>Maximum Spending</Form.Label>
             <Form.Control

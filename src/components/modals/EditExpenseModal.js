@@ -15,9 +15,6 @@ export const EditExpenseModal = ({
   const budgetIdRef = useRef()
   const { budgets, updateExpense } = useCategories()
 
-
-
-
   function handleSubmit(e) {
     e.preventDefault()
     updateExpense({
@@ -72,7 +69,7 @@ export const EditExpenseModal = ({
               <option>Uncategorized</option>
             </Form.Select>
           </Form.Group>
-          
+
           <NameInputExpense
             description={expense.description}
             descriptionRef={descriptionRef}

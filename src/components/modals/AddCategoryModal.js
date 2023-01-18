@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react'
 import { useCategories } from "../../contexts/CategoriesContext"
 import { PickEmoji } from "./PickEmoji"
 import { colors } from "../../data/colors"
+import { NameInputCategory } from "./NameInputCategory"
 
 export const AddCategoryModal = ({ show, handleClose }) => {
   const nameRef = useRef()
@@ -11,11 +12,6 @@ export const AddCategoryModal = ({ show, handleClose }) => {
   const { addBudget } = useCategories()
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const [selectedEmoji, setSelectedEmoji] = useState('')
-  const [descriptionLength, setDescriptionLength] = useState(0);
-
-  const handleDescriptionChange = (e) => {
-    setDescriptionLength(e.target.value.split(" ").join('').length);
-  }
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -38,17 +34,8 @@ export const AddCategoryModal = ({ show, handleClose }) => {
           <Modal.Title>Add Category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Group className="mb-3" controlId="name">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              ref={nameRef}
-              maxLength={25}
-              onChange={handleDescriptionChange}
-              type="text" required />
-            <Form.Text className="text-muted">
-              {descriptionLength}/20 characters used
-            </Form.Text>
-          </Form.Group>
+          <NameInputCategory nameRef={nameRef} name='' />
+
           <Form.Group className="mb-3" controlId="max">
             <Form.Label>Maximum Spending</Form.Label>
             <Form.Control

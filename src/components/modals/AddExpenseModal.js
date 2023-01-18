@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useCategories } from '../../contexts/CategoriesContext';
+import { NameInputExpense } from './NameInputExpense';
 
 export const AddExpenseModal = ({
   show, handleClose, defaultCategory, isDisabled
@@ -13,6 +14,7 @@ export const AddExpenseModal = ({
   const amountRef = useRef()
   const budgetIdRef = useRef()
   const { addExpense, budgets } = useCategories()
+  // const [descriptionLength, setDescriptionLength] = useState(0);
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -23,6 +25,7 @@ export const AddExpenseModal = ({
       amount: parseFloat(amountRef.current.value),
       budgetId: budgetIdRef.current.value,
     })
+    // setDescriptionLength(0)
     handleClose()
   }
 
@@ -40,7 +43,16 @@ export const AddExpenseModal = ({
               type="number"
               required
               min={0}
+              max={9999.99}
               step={0.01}
+              pattern="^\d+(\.\d{1,2})?$"
+              title="Please enter an amount below 10 000"
+              onInvalid={(e) => {
+                e.target.setCustomValidity("Please enter a valid amount")
+              }}
+              onInput={(e) => {
+                e.target.setCustomValidity("")
+              }}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="budgetId">
@@ -58,10 +70,12 @@ export const AddExpenseModal = ({
               <option>Uncategorized</option>
             </Form.Select>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="description">
-            <Form.Label>Description</Form.Label>
-            <Form.Control ref={descriptionRef} type="text" required />
-          </Form.Group>
+
+          <NameInputExpense
+            description=''
+            descriptionRef={descriptionRef}
+          />
+
           <Form.Group controlId="formDate">
             <Form.Label>Date and Time</Form.Label>
             <DatePicker

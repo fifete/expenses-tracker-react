@@ -11,6 +11,11 @@ export const AddCategoryModal = ({ show, handleClose }) => {
   const { addBudget } = useCategories()
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const [selectedEmoji, setSelectedEmoji] = useState('')
+  const [descriptionLength, setDescriptionLength] = useState(0);
+
+  const handleDescriptionChange = (e) => {
+    setDescriptionLength(e.target.value.split(" ").join('').length);
+  }
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -35,7 +40,14 @@ export const AddCategoryModal = ({ show, handleClose }) => {
         <Modal.Body>
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Name</Form.Label>
-            <Form.Control ref={nameRef} type="text" required />
+            <Form.Control
+              ref={nameRef}
+              maxLength={25}
+              onChange={handleDescriptionChange}
+              type="text" required />
+            <Form.Text className="text-muted">
+              {descriptionLength}/20 characters used
+            </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3" controlId="max">
             <Form.Label>Maximum Spending</Form.Label>
@@ -44,7 +56,16 @@ export const AddCategoryModal = ({ show, handleClose }) => {
               type="number"
               required
               min={0}
+              max={99999.99}
               step={0.01}
+              pattern="^\d+(\.\d{1,2})?$"
+              title="Please enter an amount below 100 000"
+              onInvalid={(e) => {
+                e.target.setCustomValidity("Please enter a valid amount")
+              }}
+              onInput={(e) => {
+                e.target.setCustomValidity("")
+              }}
             />
           </Form.Group>
           <Button className="mb-3" variant="outline-dark" onClick={() => setShowEmojiPicker(true)}>

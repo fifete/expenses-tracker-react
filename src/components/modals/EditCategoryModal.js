@@ -13,6 +13,13 @@ export const EditCategoryModal = ({ show, handleClose, category }) => {
   const { updateBudget } = useCategories()
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const [selectedEmoji, setSelectedEmoji] = useState(category.emoji)
+  const [descriptionLength, setDescriptionLength] = useState(() => {
+    return category.name ? category.name.split(" ").join('').length : 0
+  });
+
+  const handleDescriptionChange = (e) => {
+    setDescriptionLength(e.target.value.split(" ").join('').length);
+  }
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -20,9 +27,9 @@ export const EditCategoryModal = ({ show, handleClose, category }) => {
     updateBudget({
       id: category.id,
       name: nameRef.current.value,
-      max: maxRef.current.value, 
-      color: colorRef.current.value, 
-      emoji: selectedEmoji, 
+      max: maxRef.current.value,
+      color: colorRef.current.value,
+      emoji: selectedEmoji,
     })
     handleClose()
     setSelectedEmoji(category.emoji)
@@ -37,7 +44,15 @@ export const EditCategoryModal = ({ show, handleClose, category }) => {
         <Modal.Body>
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Name</Form.Label>
-            <Form.Control ref={nameRef} type="text" required defaultValue={category.name} />
+            <Form.Control
+              ref={nameRef}
+              maxLength={25}
+              onChange={handleDescriptionChange}
+              type="text" required
+              defaultValue={category.name} />
+            <Form.Text className="text-muted">
+              {descriptionLength}/20 characters used
+            </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3" controlId="max">
             <Form.Label>Maximum Spending</Form.Label>
@@ -47,7 +62,16 @@ export const EditCategoryModal = ({ show, handleClose, category }) => {
               type="number"
               required
               min={0}
+              max={99999.99}
               step={0.01}
+              pattern="^\d+(\.\d{1,2})?$"
+              title="Please enter an amount below 100 000"
+              onInvalid={(e) => {
+                e.target.setCustomValidity("Please enter a valid amount")
+              }}
+              onInput={(e) => {
+                e.target.setCustomValidity("")
+              }}
             />
           </Form.Group>
           <Button className="mb-3" variant="outline-dark" onClick={() => setShowEmojiPicker(true)}>

@@ -17,6 +17,8 @@ export const CategoryView = () => {
     deleteExpense, deleteBudget
   } = useCategories()
 
+  const navigate = useNavigate();
+  const location = useLocation();
   const [category, setCategory] = useState(false);
   const [showEditModalCategory, setShowEditModalCategory] = useState({ isOpen: false, category: {} });
   const [showDeleteModalCategory, setShowDeleteModalCategory] = useState(false);
@@ -24,9 +26,7 @@ export const CategoryView = () => {
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
   const [showEditExpenseModal, setShowEditExpenseModal] = useState({ isOpen: false, expense: {} })
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { cardId, maxBudget, spendingAmount, name, color, emoji } = location.state ? location.state : { name: 'Reload the page' }
+  const { cardId, maxBudget, spendingAmount, name, color, emoji } = location.state ? location.state : { cardId: '', maxBudget: '', spendingAmount: '', name: `Get back to previous tab to reload content`, color: '', emoji: '' }
 
   useEffect(() => {
     getBudgetExpenses(cardId)

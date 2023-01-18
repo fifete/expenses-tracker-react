@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 
 import "react-datepicker/dist/react-datepicker.css";
 import { useCategories } from '../../contexts/CategoriesContext';
+import { NameInputExpense } from './NameInputExpense';
 
 export const EditExpenseModal = ({
   show, handleClose, expense, defaultCategory, isDisabled
@@ -13,6 +14,9 @@ export const EditExpenseModal = ({
   const amountRef = useRef()
   const budgetIdRef = useRef()
   const { budgets, updateExpense } = useCategories()
+
+
+
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -41,7 +45,16 @@ export const EditExpenseModal = ({
               type="number"
               required
               min={0}
+              max={9999.99}
               step={0.01}
+              pattern="^\d+(\.\d{1,2})?$"
+              title="Please enter an amount below 10 000"
+              onInvalid={(e) => {
+                e.target.setCustomValidity("Please enter a valid amount")
+              }}
+              onInput={(e) => {
+                e.target.setCustomValidity("")
+              }}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="budgetId">
@@ -59,10 +72,12 @@ export const EditExpenseModal = ({
               <option>Uncategorized</option>
             </Form.Select>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="description">
-            <Form.Label>Description</Form.Label>
-            <Form.Control ref={descriptionRef} type="text" required defaultValue={expense.description} />
-          </Form.Group>
+          
+          <NameInputExpense
+            description={expense.description}
+            descriptionRef={descriptionRef}
+          />
+
           <Form.Group controlId="formDate">
             <Form.Label>Date and Time</Form.Label>
             <DatePicker

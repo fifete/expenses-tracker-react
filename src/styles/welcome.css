@@ -1,6 +1,11 @@
 .home .welcome,
 .welcome h1,
 .welcome h5,
-.welcome button {
+.welcome button,
+.welcome span {
     color: hsl(var(--clr-primary-100));
+}
+
+.name {
+    letter-spacing: 0.02em;
 }

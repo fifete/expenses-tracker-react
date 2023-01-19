@@ -64,6 +64,10 @@ img {
   font-size: var(--smaller-fs);
 }
 
+.body .fw-600 {
+  font-weight: var(--fw-semi-bold);
+}
+
 .body .fw-300 {
   font-weight: var(--fw-light);
 }
@@ -99,16 +103,25 @@ img {
   padding: .2em.5em;
 }
 
+.home .btn-traslucid {
+  background-color: hsla(var(--clr-secondary-100));
+}
+
+.home .btn-transparent {
+  border: 1px solid hsl(var(--clr-primary-900));
+  background-color: transparent;
+}
+
 /*==================== BACKGROUND ====================*/
 .body .home {
   background-color: purple;
 }
 
 /*==================== LAYOUT ====================*/
-.container {
-  max-width: 768px;
-  margin-left: var(--mb-1-5);
-  margin-right: var(--mb-1-5);
+.body .container-limits {
+  max-width: 30rem;
+  padding-inline: 5%;
+  padding-block: 4vh;
 }
 
 .grid {

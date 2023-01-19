@@ -1,0 +1,73 @@
+/*==================== VARIABLES CSS ====================*/
+:root {
+  --header-height: 3rem;
+
+  /*========== Colors ==========*/
+  --clr-text: 0, 1%, 25%;
+  --clr-primary-900: 0, 1%, 15%;
+  --clr-primary-100: 29, 100%, 100%;
+  --clr-card-container: hsl(0, 0%, 96%);
+
+  /*========== Font and typography ==========*/
+  --body-font: 'Raleway', sans-serif;
+  --ff-remark: 'Inter', sans-serif;
+  --ff-prices: 'Montserrat', sans-serif;
+
+  --big-fs: 1.875rem;
+  --h1-fs: 1.5rem;
+  --h2-fs: 1.25rem;
+  --h3-fs: 1.125rem;
+  --normal-fs: 1rem;
+  --small-fs: .875rem;
+  --smaller-fs: .75rem;
+
+  /*========== Font weight ==========*/
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semi-bold: 600;
+  --fw-bold: 700;
+
+  /*========== Margenes Bottom ==========*/
+  --mb-0-25: .25rem;
+  --mb-0-5: .5rem;
+  --mb-0-75: .75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+  --mb-3: 3rem;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --z-modal: 1000;
+}
+
+/*========== Variables Dark theme ==========*/
+
+[data-theme='dark'] {
+  --clr-black: 30, 8%, 95%;
+  --clr-black-remark: 0, 1%, 14%;
+  --clr-text: 23, 22%, 86%;
+  --clr-text-remark: 24, 6%, 17%;
+  --clr-dark: 301, 44%, 58%;
+  --clr-dark-hover: 301, 41%, 62%;
+  --clr-light-300: 48, 61%, 52%;
+  --clr-light-200: 28, 19%, 85%;
+  --clr-light-100: 30, 14%, 8%;
+  --clr-card-container: rgb(32, 27, 24);
+}
+
+/* Font size for large devices */
+@media screen and (min-width: 968px) {
+  :root {
+    --big-fs: 2.7rem;
+    --h1-fs: 2.25rem;
+    --h2-fs: 1.5rem;
+    --h3-fs: 1.25rem;
+    --normal-fs: 1rem;
+    --small-fs: .875rem;
+    --smaller-fs: .813rem;
+  }
+}

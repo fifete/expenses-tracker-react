@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/home" element={<Home />} />
-        <Route exact path="/other-page" element={<CategoryView />} />
+        <Route exact path="/category" element={<CategoryView />} />
       </Routes>
     </BrowserRouter>
   );

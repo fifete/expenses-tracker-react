@@ -1,0 +1,6 @@
+.home .welcome,
+.welcome h1,
+.welcome h5,
+.welcome button {
+    color: hsl(var(--clr-primary-100));
+}

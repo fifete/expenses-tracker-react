@@ -12,7 +12,7 @@ export const CategoryCard = ({
   return (
     <div>
       <Link
-        to="/other-page"
+        to="/category"
         state={{
           cardId: id,
           name,

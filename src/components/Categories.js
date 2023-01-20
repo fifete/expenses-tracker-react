@@ -17,10 +17,10 @@ export const Categories = ({
     <div className='categories container-limits'>
       <div>
         <h3 className='fs-500'>Categories</h3>
-        <button
-          className='btn btn-transparent'
+        <span
+          className="uil uil-plus-circle"
           onClick={() => handleShow(true)}
-        >+</button>
+        ></span>
       </div>
       <div className='categories-cards'>
         {

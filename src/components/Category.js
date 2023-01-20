@@ -41,12 +41,14 @@ export const CategoryView = () => {
 
   return (
     <>
-      <div>
+      <div className='container-limits'>
         {
           category ?
             <div>
               <div>
-                <i onClick={() => navigate("/home")}>⬅</i>
+                <i 
+                className='uil uil-angle-left-b'
+                onClick={() => navigate("/home")}></i>
                 <OptionsModal
                   handleShowDelete={setShowDeleteModalCategory}
                   handleShowEdit={() => setShowEditModalCategory(prev => ({
@@ -86,7 +88,9 @@ export const CategoryView = () => {
             :
             <div>
               <div>
-                <i onClick={() => navigate("/home")}>⬅</i>
+                <i 
+                className='uil uil-angle-left-b'
+                onClick={() => navigate("/home")}></i>
                 <OptionsModal
                   handleShowDelete={setShowDeleteModalCategory}
                   handleShowEdit={() => setShowEditModalCategory(prev => ({

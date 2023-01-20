@@ -22,11 +22,15 @@ export const Welcome = ({
           <span
             className='btn btn-traslucid'
             onClick={() => handleShow(true)}
-          >+</span>
+          >
+            <i className="uil uil-plus"></i>
+          </span>
           <p className='fs-smallest'>Expense</p>
         </div>
         <div>
-          <span className='btn btn-traslucid'>+</span>
+          <span className='btn btn-traslucid'>
+            <i className="uil uil-graph-bar"></i>
+          </span>
           <p className='fs-smallest'>Stats</p>
         </div>
       </div>

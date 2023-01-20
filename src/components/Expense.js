@@ -18,8 +18,12 @@ export const Expense = ({ expense, handleShowDelete, handleShowEdit }) => {
                     </div>
                 </Stack>
                 <div className='spent-edit-tools'>
-                    <i onClick={handleShowEdit}>🖋</i>
-                    <i onClick={handleShowDelete}>🗑</i>
+                    <i 
+                    className='uil uil-edit'
+                    onClick={handleShowEdit}></i>
+                    <i 
+                    className='uil uil-trash'
+                    onClick={handleShowDelete}></i>
                 </div>
             </div>
         </>

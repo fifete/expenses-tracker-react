@@ -52,6 +52,10 @@ img {
   font-size: var(--big-fs);
 }
 
+.body .fs-600 {
+  font-size: var(--h2-fs);
+}
+
 .body .fs-500 {
   font-size: var(--h3-fs);
 }
@@ -66,6 +70,10 @@ img {
 
 .body .fw-600 {
   font-weight: var(--fw-semi-bold);
+}
+
+.body .fw-500 {
+  font-weight: var(--fw-medium);
 }
 
 .body .fw-300 {
@@ -97,19 +105,24 @@ img {
 }
 
 /*==================== ELEMENTS ====================*/
-.home .btn {
+.body .btn {
   border: 0;
   border-radius: .5em;
   padding: .2em.5em;
 }
 
-.home .btn-traslucid {
+.body .btn-traslucid {
   background-color: hsla(var(--clr-secondary-100));
 }
 
-.home .btn-transparent {
+.body .btn-transparent {
   border: 1px solid hsl(var(--clr-primary-900));
   background-color: transparent;
+}
+
+.body .card {
+  border-radius: 1rem;
+  padding: 1rem;
 }
 
 /*==================== BACKGROUND ====================*/

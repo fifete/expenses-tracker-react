@@ -21,13 +21,14 @@ export const CategoryCard = ({
           color,
           emoji
         }}
+        className='card category-card'
       >
         <div>
           <div style={{ border: `1px solid ${color}` }}>
             <span>{emoji}</span>
           </div>
-          <p>{name}</p>
-          <h2>${amount}</h2>
+          <p className='fs-smallest'>{name}</p>
+          <h2 className='ff-price fs-600 fw-500'>${amount}</h2>
         </div>
         {max && (
           <ProgressBar

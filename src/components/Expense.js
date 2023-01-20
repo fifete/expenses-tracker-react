@@ -4,18 +4,17 @@ import { useCategories } from '../contexts/CategoriesContext'
 import { Stack } from 'react-bootstrap'
 
 export const Expense = ({ expense, handleShowDelete, handleShowEdit }) => {
-    console.log('expense', expense.date)
     return (
         <>
             <div className='categ-spent'>
-                <Stack direction="vertical" gap="2">
+                <Stack direction="vertical" gap="2" className='card'>
                     <div>
-                        <p>{expense.description}</p>
-                        <h5>${expense.amount}</h5>
+                        <p className='ff-remark fs-smallest fw-500'>{expense.description}</p>
+                        <span className='ff-price'>${expense.amount}</span>
                     </div>
                     <div>
-                        <p>{expense.date}</p>
-                        <p>{expense.time}</p>
+                        <p className='ff-price fs-smallest fw-300'>{expense.date}</p>
+                        <p className='ff-price fs-smallest fw-300'>{expense.time}</p>
                     </div>
                 </Stack>
                 <div className='spent-edit-tools'>

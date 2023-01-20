@@ -64,11 +64,11 @@ export const CategoryView = () => {
               </div>
               <div>
                 <span>{category.emoji}</span>
-                <h2>{category.name}</h2>
+                <h2 className='fs-600 fw-500'>{category.name}</h2>
                 <div>
                   <div>
-                    <h5>${spendingAmount}</h5>
-                    <h5> / ${category.maxBudget}</h5>
+                    <span className='ff-price'>${spendingAmount}</span>
+                    <span className='ff-price'> / ${category.maxBudget}</span>
                   </div>
                   <div className='categ-percent-bar'></div>
                   {maxBudget && (
@@ -104,11 +104,11 @@ export const CategoryView = () => {
               </div>
               <div>
                 <span>{emoji}</span>
-                <h2>{name}</h2>
+                <h2 className='fs-600 fw-500'>{name}</h2>
                 <div>
                   <div>
-                    <h5>${spendingAmount}</h5>
-                    <h5> / ${maxBudget}</h5>
+                    <span className='ff-price'>${spendingAmount}</span>
+                    <span className='ff-price'> / ${maxBudget}</span>
                   </div>
                   <div className='categ-percent-bar'></div>
                   {maxBudget && (
@@ -126,7 +126,12 @@ export const CategoryView = () => {
         }
 
         <div>
-          <button onClick={() => setShowAddExpenseModal(true)}>Add Expense</button>
+          <button
+            className='btn btn-traslucid ff-remark fs-small'
+            onClick={() => setShowAddExpenseModal(true)}
+          >
+            Add Expense
+          </button>
           <div className='categ-expenses'>
             {
               expenses.map(expenseInfo => (

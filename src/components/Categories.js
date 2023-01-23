@@ -11,8 +11,6 @@ export const Categories = ({
     getBudgets();
   }, []);
 
-  let amount
-
   return (
     <div className='categories container-limits'>
       <div>
@@ -25,20 +23,11 @@ export const Categories = ({
       <div className='categories-cards'>
         {
           budgets.map(budget => {
-            {/* const test = getBudgetExpenses(budget.id)
-              if (!test) {
-                const amount = test.reduce(
-                  (total, expense) => total + expense.spendingAmount,
-                  0
-                )
-              } else amount = 0 */}
-            amount = 0
             return (
               <CategoryCard
                 key={budget.id}
                 id={budget.id}
                 name={budget.name}
-                // amount={expensesAmount}
                 emoji={budget.emoji}
                 color={budget.color}
                 max={budget.maxBudget}

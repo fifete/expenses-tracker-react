@@ -60,23 +60,26 @@ export const CategoryView = () => {
           category ?
             <div>
               <div>
-                <i 
-                className='uil uil-angle-left-b'
-                onClick={() => navigate("/home")}></i>
-                <OptionsModal
-                  handleShowDelete={setShowDeleteModalCategory}
-                  handleShowEdit={() => setShowEditModalCategory(prev => ({
-                    ...prev,
-                    isOpen: true,
-                    category: {
-                      id: cardId,
-                      name: category.name,
-                      max: category.maxBudget,
-                      color: category.color,
-                      emoji: category.emoji
-                    }
-                  }))}
-                />
+                <i
+                  className='uil uil-angle-left-b'
+                  onClick={() => navigate("/home")}></i>
+                {
+                  cardId !== 8029 &&
+                  <OptionsModal
+                    handleShowDelete={setShowDeleteModalCategory}
+                    handleShowEdit={() => setShowEditModalCategory(prev => ({
+                      ...prev,
+                      isOpen: true,
+                      category: {
+                        id: cardId,
+                        name: category.name,
+                        max: category.maxBudget,
+                        color: category.color,
+                        emoji: category.emoji
+                      }
+                    }))}
+                  />
+                }
               </div>
               <div>
                 <span>{category.emoji}</span>
@@ -84,17 +87,17 @@ export const CategoryView = () => {
                 <div>
                   <div>
                     <p>Testing now modified:</p>
-                    <span className='ff-price'>${ amount ? amount : spendingAmount }</span>
+                    <span className='ff-price'>${amount ? amount : spendingAmount}</span>
                     <span className='ff-price'> / ${category.maxBudget}</span>
                   </div>
                   <div className='categ-percent-bar'></div>
                   {maxBudget && (
                     <ProgressBar
                       className="rounded-pill"
-                      variant={getProgressBarVariant( amount ? amount : spendingAmount , category.maxBudget)}
+                      variant={getProgressBarVariant(amount ? amount : spendingAmount, category.maxBudget)}
                       min={0}
                       max={category.maxBudget}
-                      now={ amount ? amount : spendingAmount }
+                      now={amount ? amount : spendingAmount}
                     />
                   )}
                 </div>
@@ -103,30 +106,33 @@ export const CategoryView = () => {
             :
             <div>
               <div>
-                <i 
-                className='uil uil-angle-left-b'
-                onClick={() => navigate("/home")}></i>
-                <OptionsModal
-                  handleShowDelete={setShowDeleteModalCategory}
-                  handleShowEdit={() => setShowEditModalCategory(prev => ({
-                    ...prev,
-                    isOpen: true,
-                    category: {
-                      id: cardId,
-                      name: name,
-                      max: maxBudget,
-                      color: color,
-                      emoji: emoji
-                    }
-                  }))}
-                />
+                <i
+                  className='uil uil-angle-left-b'
+                  onClick={() => navigate("/home")}></i>
+                {
+                  cardId !== 8029 &&
+                  <OptionsModal
+                    handleShowDelete={setShowDeleteModalCategory}
+                    handleShowEdit={() => setShowEditModalCategory(prev => ({
+                      ...prev,
+                      isOpen: true,
+                      category: {
+                        id: cardId,
+                        name: name,
+                        max: maxBudget,
+                        color: color,
+                        emoji: emoji
+                      }
+                    }))}
+                  />
+                }
               </div>
               <div>
                 <span>{emoji}</span>
                 <h2 className='fs-600 fw-500'>{name}</h2>
                 <div>
                   <div>
-                    <span className='ff-price'>${ amount ? amount : spendingAmount }</span>
+                    <span className='ff-price'>${amount ? amount : spendingAmount}</span>
                     <span className='ff-price'> / ${maxBudget}</span>
                   </div>
                   <div className='categ-percent-bar'></div>

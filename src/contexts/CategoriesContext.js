@@ -97,7 +97,7 @@ export function CategoriesProvider({ children }) {
     const UpdatedExpenseResponse = await response.json();
 
     getCategoryExpenses(UpdatedExpenseResponse.categoryId)
-    
+
     setIsUpdatedAmount(true)
   }
 

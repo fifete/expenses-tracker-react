@@ -5,7 +5,6 @@ import { useCategories } from '../contexts/CategoriesContext';
 
 export const CategoryCard = ({
   id, name,
-  // expensesAmount,
   emoji,
   max,
   color

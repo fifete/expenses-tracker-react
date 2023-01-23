@@ -1,6 +1,6 @@
 import { Form, Modal, Button } from "react-bootstrap"
 
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useCategories } from "../../contexts/CategoriesContext"
 import { PickEmoji } from "./PickEmoji"
 import { colors } from "../../data/colors"
@@ -22,7 +22,7 @@ export const EditCategoryModal = ({ show, handleClose, category }) => {
       name: nameRef.current.value,
       max: maxRef.current.value,
       color: colorRef.current.value,
-      emoji: selectedEmoji,
+      emoji: selectedEmoji ? selectedEmoji : category.emoji,
     })
     handleClose()
     setSelectedEmoji(category.emoji)
@@ -35,8 +35,8 @@ export const EditCategoryModal = ({ show, handleClose, category }) => {
           <Modal.Title>Edit Category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <NameInputCategory nameRef={nameRef} name={category.name}/>
-          
+          <NameInputCategory nameRef={nameRef} name={category.name} />
+
           <Form.Group className="mb-3" controlId="max">
             <Form.Label>Maximum Spending</Form.Label>
             <Form.Control

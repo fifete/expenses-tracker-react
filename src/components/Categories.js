@@ -6,7 +6,7 @@ import '../styles/categories.css';
 export const Categories = ({
   handleShow
 }) => {
-  const { budgets, getBudgets, getBudgetExpenses } = useCategories()
+  const { budgets, getBudgets } = useCategories()
   useEffect(() => {
     getBudgets();
   }, []);
@@ -38,7 +38,7 @@ export const Categories = ({
                 key={budget.id}
                 id={budget.id}
                 name={budget.name}
-                amount={amount}
+                // amount={expensesAmount}
                 emoji={budget.emoji}
                 color={budget.color}
                 max={budget.maxBudget}

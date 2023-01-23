@@ -10,7 +10,22 @@ export function useCategories() {
 export function CategoriesProvider({ children }) {
   const [budgets, setBudgets] = useState([])
   const [expenses, setExpenses] = useState([])
+  const [isUpdatedAmount, setIsUpdatedAmount] = useState(false)
   const [isUpdatedCategory, setIsUpdatedCategory] = useState(false)
+
+  async function getCategoryAmount(budgetId) {
+    const response = await fetch(`https://localhost:7285/api/CategoryExpenses/${budgetId}`);
+
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+
+    const amount = await response.json();
+    console.log(amount)
+
+    return amount.spendingAmount
+  }
 
   async function getCategoryExpenses(budgetId) {
     const response = await fetch(`https://localhost:7285/api/Expenses?categoryId=${budgetId}`);
@@ -51,6 +66,7 @@ export function CategoriesProvider({ children }) {
     }
 
     getCategoryExpenses(budgetId)
+    setIsUpdatedAmount(true)
   }
 
   async function updateExpense({ date, time, description, amount, expenseId }) {
@@ -81,6 +97,8 @@ export function CategoriesProvider({ children }) {
     const UpdatedExpenseResponse = await response.json();
 
     getCategoryExpenses(UpdatedExpenseResponse.categoryId)
+    console.log('expense updated')
+    setIsUpdatedAmount(true)
   }
 
   async function deleteExpense(expenseID) {
@@ -222,6 +240,9 @@ export function CategoriesProvider({ children }) {
     getBudgetById,
     getBudgetExpenses: getCategoryExpenses,
     isUpdatedCategory, setIsUpdatedCategory,
+    getCategoryAmount,
+    isUpdatedAmount, setIsUpdatedAmount
+    // expensesAmount, setExpensesAmount
   }
 
   return (

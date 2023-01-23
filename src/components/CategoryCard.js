@@ -1,14 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ProgressBar } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
+import { useCategories } from '../contexts/CategoriesContext';
 
 export const CategoryCard = ({
   id, name,
-  amount,
+  // expensesAmount,
   emoji,
   max,
   color
 }) => {
+  const { getCategoryAmount, isUpdatedAmount, setIsUpdatedAmount } = useCategories()
+  const [amount, setAmount] = useState(0)
+
+  useEffect(() => {
+    async function fetchAmount() {
+      const categoryAmount = await getCategoryAmount(id);
+      console.log(categoryAmount)
+      setAmount(categoryAmount)
+    }
+    fetchAmount();
+  }, []);
+
+  useEffect(() => {
+    async function fetchAmount() {
+      if (isUpdatedAmount) {
+        const categoryAmount = await getCategoryAmount(id);
+        console.log(categoryAmount, 'isUpdatedAmount')
+        setAmount(categoryAmount)
+        setIsUpdatedAmount(false)
+      }
+    }
+    fetchAmount();
+  }, [isUpdatedAmount]);
+
   return (
     <div>
       <Link
@@ -44,8 +69,8 @@ export const CategoryCard = ({
   )
 }
 
-function getProgressBarVariant(amount, max) {
-  const ratio = amount / max
+function getProgressBarVariant(expensesAmount, max) {
+  const ratio = expensesAmount / max
   if (ratio < 0.5) {
     return 'primary'
   } else if (ratio < 0.75) {

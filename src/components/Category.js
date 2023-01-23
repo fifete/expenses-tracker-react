@@ -13,6 +13,8 @@ export const CategoryView = () => {
   const {
     expenses,
     isUpdatedCategory, setIsUpdatedCategory,
+    isUpdatedAmount, setIsUpdatedAmount,
+    getCategoryAmount,
     getBudgetById, getBudgetExpenses,
     deleteExpense, deleteBudget
   } = useCategories()
@@ -25,6 +27,7 @@ export const CategoryView = () => {
   const [showDeleteModalExpense, setShowDeleteModalExpense] = useState({ isOpen: false, expenseID: '' });
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
   const [showEditExpenseModal, setShowEditExpenseModal] = useState({ isOpen: false, expense: {} })
+  const [amount, setAmount] = useState(0)
 
   const { cardId, maxBudget, spendingAmount, name, color, emoji } = location.state ? location.state : { cardId: '', maxBudget: '', spendingAmount: '', name: `Get back to previous tab to reload content`, color: '', emoji: '' }
 
@@ -38,6 +41,18 @@ export const CategoryView = () => {
       setIsUpdatedCategory(false)
     }
   }, [isUpdatedCategory])
+
+  useEffect(() => {
+    async function fetchAmount() {
+      if (isUpdatedAmount) {
+        const categoryAmount = await getCategoryAmount(cardId);
+        console.log(categoryAmount)
+        setAmount(categoryAmount)
+        setIsUpdatedAmount(false)
+      }
+    }
+    fetchAmount();
+  }, [isUpdatedAmount]);
 
   return (
     <>
@@ -69,17 +84,18 @@ export const CategoryView = () => {
                 <h2 className='fs-600 fw-500'>{category.name}</h2>
                 <div>
                   <div>
-                    <span className='ff-price'>${spendingAmount}</span>
+                    <p>Testing now modified:</p>
+                    <span className='ff-price'>${ amount ? amount : spendingAmount }</span>
                     <span className='ff-price'> / ${category.maxBudget}</span>
                   </div>
                   <div className='categ-percent-bar'></div>
                   {maxBudget && (
                     <ProgressBar
                       className="rounded-pill"
-                      variant={getProgressBarVariant(spendingAmount, category.maxBudget)}
+                      variant={getProgressBarVariant( amount ? amount : spendingAmount , category.maxBudget)}
                       min={0}
                       max={category.maxBudget}
-                      now={spendingAmount}
+                      now={ amount ? amount : spendingAmount }
                     />
                   )}
                 </div>
@@ -111,17 +127,17 @@ export const CategoryView = () => {
                 <h2 className='fs-600 fw-500'>{name}</h2>
                 <div>
                   <div>
-                    <span className='ff-price'>${spendingAmount}</span>
+                    <span className='ff-price'>${ amount ? amount : spendingAmount }</span>
                     <span className='ff-price'> / ${maxBudget}</span>
                   </div>
                   <div className='categ-percent-bar'></div>
                   {maxBudget && (
                     <ProgressBar
                       className="rounded-pill"
-                      variant={getProgressBarVariant(spendingAmount, maxBudget)}
+                      variant={getProgressBarVariant(amount ? amount : spendingAmount, maxBudget)}
                       min={0}
                       max={maxBudget}
-                      now={spendingAmount}
+                      now={amount ? amount : spendingAmount}
                     />
                   )}
                 </div>

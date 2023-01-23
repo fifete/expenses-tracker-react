@@ -97,7 +97,7 @@ export function CategoriesProvider({ children }) {
     const UpdatedExpenseResponse = await response.json();
 
     getCategoryExpenses(UpdatedExpenseResponse.categoryId)
-    console.log('expense updated')
+    
     setIsUpdatedAmount(true)
   }
 
@@ -114,6 +114,8 @@ export function CategoriesProvider({ children }) {
     setExpenses(prevExpenses => {
       return prevExpenses.filter(expense => expense.id !== expenseID)
     })
+
+    setIsUpdatedAmount(true)
   }
 
   async function getBudgets() {

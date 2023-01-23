@@ -46,7 +46,6 @@ export const CategoryView = () => {
     async function fetchAmount() {
       if (isUpdatedAmount) {
         const categoryAmount = await getCategoryAmount(cardId);
-        console.log(categoryAmount)
         setAmount(categoryAmount)
         setIsUpdatedAmount(false)
       }

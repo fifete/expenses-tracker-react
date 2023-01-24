@@ -107,8 +107,8 @@ img {
 /*==================== ELEMENTS ====================*/
 .body .btn {
   border: 0;
-  border-radius: .5em;
-  padding: .2em.5em;
+  border-radius: .8em;
+  padding: .4em.6em;
 }
 
 .body .btn-traslucid {
@@ -137,9 +137,12 @@ img {
   padding-block: 4vh;
 }
 
-.grid {
+.body .flex {
+  display: flex;
+}
+
+.body .grid {
   display: grid;
-  gap: 1.5rem;
 }
 
 .header {

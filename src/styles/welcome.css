@@ -1,11 +1,30 @@
+.welcome {
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .home .welcome,
 .welcome h1,
 .welcome h5,
 .welcome button,
 .welcome span {
-    color: hsl(var(--clr-primary-100));
+  color: hsl(var(--clr-primary-100));
 }
 
 .name {
-    letter-spacing: 0.02em;
+  letter-spacing: 0.02em;
+}
+
+.welcome-buttons {
+  justify-content: space-evenly;
+ } 
+
+.welcome-btn-container {
+  gap: .5em;
+  justify-items: center;
+}
+
+.welcome-buttons span {
+  width: 3.2rem;
+  height: 3.2rem;
 }

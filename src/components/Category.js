@@ -90,16 +90,17 @@ export const CategoryView = () => {
                     <span className='ff-price'>${amount ? amount : spendingAmount}</span>
                     <span className='ff-price'> / ${category.maxBudget}</span>
                   </div>
-                  <div className='categ-percent-bar'></div>
-                  {maxBudget && (
-                    <ProgressBar
-                      className="rounded-pill"
-                      variant={getProgressBarVariant(amount ? amount : spendingAmount, category.maxBudget)}
-                      min={0}
-                      max={category.maxBudget}
-                      now={amount ? amount : spendingAmount}
-                    />
-                  )}
+                    {maxBudget && (
+                  <div className='categ-percent-bar'>
+                      <ProgressBar
+                        className="rounded-pill"
+                        variant={getProgressBarVariant(amount ? amount : spendingAmount, category.maxBudget)}
+                        min={0}
+                        max={category.maxBudget}
+                        now={amount ? amount : spendingAmount}
+                      />
+                  </div>
+                    )}
                 </div>
               </div>
             </div>
@@ -135,16 +136,17 @@ export const CategoryView = () => {
                     <span className='ff-price'>${amount ? amount : spendingAmount}</span>
                     <span className='ff-price'> / ${maxBudget}</span>
                   </div>
-                  <div className='categ-percent-bar'></div>
-                  {maxBudget && (
-                    <ProgressBar
-                      className="rounded-pill"
-                      variant={getProgressBarVariant(amount ? amount : spendingAmount, maxBudget)}
-                      min={0}
-                      max={maxBudget}
-                      now={amount ? amount : spendingAmount}
-                    />
-                  )}
+                    {maxBudget && (
+                  <div className='categ-percent-bar'>
+                      <ProgressBar
+                        className="rounded-pill"
+                        variant={getProgressBarVariant(amount ? amount : spendingAmount, maxBudget)}
+                        min={0}
+                        max={maxBudget}
+                        now={amount ? amount : spendingAmount}
+                      />
+                  </div>
+                    )}
                 </div>
               </div>
             </div>

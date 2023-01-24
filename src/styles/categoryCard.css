@@ -1,3 +1,36 @@
-.category-card {
-  background-color: hsl(var(--clr-primary-100));
+.home .category-card {
+  flex-direction: row;
+  align-items: stretch;
+  gap: 1.5rem;
+}
+
+.category-card .progress {
+  flex-direction: column-reverse;
+  align-items: center;
+  height: 100%;
+  width: 1rem;
+}
+
+.category-card .progress-bar-label {
+  font-size: .6rem;
+  rotate: -90deg;
+  transform: translateX(30%);
+  color: hsl(var(--clr-primary-100));
+  position: absolute;
+}
+
+.category-card .progress-bar {
+  background-color: hsl(var(--clr-primary-900));
+}
+
+.card-emoji {
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.card-name {
+  margin-bottom: .5em;
 }

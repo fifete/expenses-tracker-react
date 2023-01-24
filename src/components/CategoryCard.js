@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ProgressBar } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { useCategories } from '../contexts/CategoriesContext';
+import '../styles/categoryCard.css';
 
 export const CategoryCard = ({
   id, name,
@@ -45,23 +46,22 @@ export const CategoryCard = ({
           color,
           emoji
         }}
-        className='card category-card'
+        className='flex card-custom category-card link-reset'
       >
         <div>
-          <div style={{ border: `1px solid ${color}` }}>
-            <span>{emoji}</span>
-          </div>
-          <p className='fs-smallest'>{name}</p>
+          <span className='flex card-emoji' style={{ border: `1px solid ${color}` }}>
+            {emoji}
+          </span>
+          <p className='card-name fs-smallest'>{name}</p>
           <h2 className='ff-price fs-600 fw-500'>${amount}</h2>
         </div>
         {max && (
-          <ProgressBar
-            className="rounded-pill"
-            variant={getProgressBarVariant(amount, max)}
-            min={0}
-            max={max}
-            now={amount}
-          />
+          <div className='categ-percent-bar'>
+            <div className="progress">
+              <div className="progress-bar" role="progressbar" style={{height: `${getProgressBarVariant(amount, max)}%`, width: '100%'}} aria-valuenow={amount} aria-valuemin="0" aria-valuemax={max}></div>
+              <div className="progress-bar-label ff-remark">{getProgressBarVariant(amount, max)}%</div>
+            </div>
+          </div>
         )}
       </Link>
     </div>
@@ -69,11 +69,8 @@ export const CategoryCard = ({
 }
 
 function getProgressBarVariant(expensesAmount, max) {
-  const ratio = expensesAmount / max
-  if (ratio < 0.5) {
-    return 'primary'
-  } else if (ratio < 0.75) {
-    return 'warning'
-  }
-  return 'danger'
+  const percentage = Math.round(expensesAmount / max * 100).toFixed(0)
+  const percentageNumber = parseFloat(percentage)
+  if(percentageNumber > 100) return 100
+  return percentageNumber
 }

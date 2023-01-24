@@ -7,7 +7,7 @@ export const Expense = ({ expense, handleShowDelete, handleShowEdit }) => {
     return (
         <>
             <div className='categ-spent'>
-                <Stack direction="vertical" gap="2" className='card'>
+                <Stack direction="vertical" gap="2" className='card-custom'>
                     <div>
                         <p className='ff-remark fs-smallest fw-500'>{expense.description}</p>
                         <span className='ff-price'>${expense.amount}</span>

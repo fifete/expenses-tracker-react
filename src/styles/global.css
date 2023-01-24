@@ -24,6 +24,7 @@ html {
 .body h5 {
   color: hsl(var(--clr-primary-900));
   font-weight: var(--fw-semi-bold);
+  margin: 0;
 }
 
 ul {
@@ -120,9 +121,16 @@ img {
   background-color: transparent;
 }
 
-.body .card {
+.body .card-custom {
+  border: 1px solid blueviolet;
   border-radius: 1rem;
   padding: 1rem;
+  background-color: hsl(var(--clr-primary-100));
+}
+
+.link-reset {
+  color: inherit;
+  text-decoration: none;
 }
 
 /*==================== BACKGROUND ====================*/

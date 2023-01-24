@@ -13,10 +13,10 @@ export const Categories = ({
 
   return (
     <div className='categories container-limits'>
-      <div>
+      <div className='flex categories-title'>
         <h3 className='fs-500'>Categories</h3>
         <span
-          className="uil uil-plus-circle"
+          className="uil uil-plus-circle fs-smallest"
           onClick={() => handleShow(true)}
         ></span>
       </div>

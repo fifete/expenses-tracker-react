@@ -5,6 +5,7 @@
   /*========== Colors ==========*/
   --clr-text: 0, 1%, 25%;
   --clr-primary-900: 0, 1%, 15%;
+  --clr-secondary-200: hsl(0, 0%, 51%);
   --clr-secondary-100: 0, 8%, 85%, 20%;
   --clr-primary-100: 29, 100%, 100%;
   --clr-card-container: hsl(0, 0%, 96%);

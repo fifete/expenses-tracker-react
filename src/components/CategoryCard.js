@@ -46,11 +46,11 @@ export const CategoryCard = ({
           color,
           emoji
         }}
-        className='flex card-custom category-card link-reset'
+        className='grid card-custom category-card link-reset'
       >
         <div>
-          <span className='flex card-emoji' style={{ border: `1px solid ${color}` }}>
-            {emoji}
+          <span className='flex card-emoji' style={{ backgroundColor: color }}>
+            <span className='emoji'>{emoji}</span>
           </span>
           <p className='card-name fs-smallest'>{name}</p>
           <h2 className='ff-price fs-600 fw-500'>${amount}</h2>

@@ -1,7 +1,6 @@
 .home .category-card {
-  flex-direction: row;
-  align-items: stretch;
-  gap: 1.5rem;
+  grid-template-columns: 70% 20%;
+  gap: 10%;
 }
 
 .category-card .progress {
@@ -23,14 +22,24 @@
   background-color: hsl(var(--clr-primary-900));
 }
 
+.categ-percent-bar {
+  justify-self: center;
+}
+
 .card-emoji {
   width: 2.5rem;
   height: 2.5rem;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+  border-radius: .5em;
 }
 
 .card-name {
   margin-bottom: .5em;
+  color: var(--clr-secondary-200)
+}
+
+.emoji {
+  filter: sepia(.4) grayscale(50%);
 }

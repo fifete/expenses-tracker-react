@@ -30,15 +30,12 @@
   --fw-semi-bold: 600;
   --fw-bold: 700;
 
-  /*========== Margenes Bottom ==========*/
-  --mb-0-25: .25rem;
-  --mb-0-5: .5rem;
-  --mb-0-75: .75rem;
-  --mb-1: 1rem;
-  --mb-1-5: 1.5rem;
-  --mb-2: 2rem;
-  --mb-2-5: 2.5rem;
-  --mb-3: 3rem;
+  /*========== Margenes==========*/
+  --m-0-5: .5em;
+  --m-1: 1rem;
+  --m-1-5: 1.5rem;
+  --m-2: 2rem;
+  --m-2-5: 2.5rem;
 
   /*========== z index ==========*/
   --z-tooltip: 10;

@@ -19,10 +19,10 @@ export const OptionsModal = ({
   return (
     <>
       {showTooltip && openTooltip}
-      <span
+      <i
         className="uil uil-ellipsis-v"
         onClick={() => setShowTooltip(prev => !prev)}
-      ></span>
+      ></i>
     </>
   );
 }

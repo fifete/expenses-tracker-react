@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { ProgressBar } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { useCategories } from '../contexts/CategoriesContext';
 import '../styles/categoryCard.css';

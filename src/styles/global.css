@@ -40,6 +40,10 @@ img {
   height: auto;
 }
 
+i:hover {
+  cursor: pointer;
+}
+
 /*==================== TYPOGRAPHY ====================*/
 .body .ff-price {
   font-family: var(--ff-prices);
@@ -51,6 +55,10 @@ img {
 
 .body .fs-big {
   font-size: var(--big-fs);
+}
+
+.body .fs-700 {
+  font-size: var(--h1-fs);
 }
 
 .body .fs-600 {
@@ -122,11 +130,8 @@ img {
 }
 
 .body .card-custom {
-  /* border: 1px solid blueviolet; */
-  /* border-radius: 1rem; */
   border: 1px solid #dad8dc;
-border-radius: 1.5rem;
-
+  border-radius: 1.5rem;
   padding: 1rem;
   background-color: hsl(var(--clr-primary-100));
 }
@@ -154,6 +159,22 @@ border-radius: 1.5rem;
 
 .body .grid {
   display: grid;
+}
+
+.custom-stack-0-5 > * + * {
+  margin-top: var(--m-0-5);
+}
+.custom-stack-1 > * + * {
+  margin-top: var(--m-1);
+}
+.custom-stack-1-5 > * + * {
+  margin-top: var(--m-1-5);
+}
+.custom-stack-2 > * + * {
+  margin-top: var(--m-2);
+}
+.custom-stack-2-5 > * + * {
+  margin-top: var(--m-2-5);
 }
 
 .header {

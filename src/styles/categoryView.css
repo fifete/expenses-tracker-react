@@ -1,0 +1,21 @@
+.category-top {
+  justify-content: space-between;
+}
+
+.category_view-title {
+  margin-top: 1rem !important;
+}
+
+.category_view-amount {
+  justify-content: end;
+  gap: .5em;
+}
+
+.rounded-pill {
+  height: .5em !important;
+}
+
+.categ-expenses {
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}

@@ -8,6 +8,7 @@ import { Expense } from './Expense';
 import { OptionsModal } from './modals/OptionsModal'
 import { EditCategoryModal } from './modals/EditCategoryModal';
 import { ProgressBar } from 'react-bootstrap';
+import '../styles/categoryView.css';
 
 export const CategoryView = () => {
   const {
@@ -55,11 +56,11 @@ export const CategoryView = () => {
 
   return (
     <>
-      <div className='container-limits'>
+      <div className='custom-stack-2-5 container-limits custom-stack'>
         {
           category ?
-            <div>
-              <div>
+            <div className='custom-stack-1-5 custom-stack'>
+              <div className='category-top flex fs-700'>
                 <i
                   className='uil uil-angle-left-b'
                   onClick={() => navigate("/home")}></i>
@@ -81,17 +82,19 @@ export const CategoryView = () => {
                   />
                 }
               </div>
-              <div>
-                <span>{category.emoji}</span>
-                <h2 className='fs-600 fw-500'>{category.name}</h2>
+              <div className='custom-stack-1'>
                 <div>
-                  <div>
+                  <span>{category.emoji}</span>
+                </div>
+                <h2 className='category_view-title fs-600 fw-500'>{category.name}</h2>
+                <div className='custom-stack-0-5'>
+                  <div className='category_view-amount flex'>
                     <p>Testing now modified:</p>
                     <span className='ff-price'>${amount ? amount : spendingAmount}</span>
                     <span className='ff-price'> / ${category.maxBudget}</span>
                   </div>
-                    {maxBudget && (
-                  <div className='categ-percent-bar'>
+                  {maxBudget && (
+                    <div className='categ-percent-bar'>
                       <ProgressBar
                         className="rounded-pill"
                         variant={getProgressBarVariant(amount ? amount : spendingAmount, category.maxBudget)}
@@ -99,14 +102,14 @@ export const CategoryView = () => {
                         max={category.maxBudget}
                         now={amount ? amount : spendingAmount}
                       />
-                  </div>
-                    )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
             :
-            <div>
-              <div>
+            <div className='custom-stack-1-5 custom-stack'>
+              <div className='category-top flex fs-700'>
                 <i
                   className='uil uil-angle-left-b'
                   onClick={() => navigate("/home")}></i>
@@ -128,16 +131,18 @@ export const CategoryView = () => {
                   />
                 }
               </div>
-              <div>
-                <span>{emoji}</span>
-                <h2 className='fs-600 fw-500'>{name}</h2>
+              <div className='custom-stack-1'>
                 <div>
-                  <div>
+                  <span>{emoji}</span>
+                </div>
+                <h2 className='category_view-title fs-600 fw-500'>{name}</h2>
+                <div className='custom-stack-0-5'>
+                  <div className='category_view-amount flex'>
                     <span className='ff-price'>${amount ? amount : spendingAmount}</span>
                     <span className='ff-price'> / ${maxBudget}</span>
                   </div>
-                    {maxBudget && (
-                  <div className='categ-percent-bar'>
+                  {maxBudget && (
+                    <div className='categ-percent-bar'>
                       <ProgressBar
                         className="rounded-pill"
                         variant={getProgressBarVariant(amount ? amount : spendingAmount, maxBudget)}
@@ -145,21 +150,21 @@ export const CategoryView = () => {
                         max={maxBudget}
                         now={amount ? amount : spendingAmount}
                       />
-                  </div>
-                    )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
         }
 
-        <div>
+        <div className='custom-stack-2'>
           <button
-            className='btn btn-traslucid ff-remark fs-small'
+            className='btn btn-traslucid ff-remark fs-small fw-600'
             onClick={() => setShowAddExpenseModal(true)}
           >
             Add Expense
           </button>
-          <div className='categ-expenses'>
+          <div className='grid categ-expenses'>
             {
               expenses.map(expenseInfo => (
                 <Expense

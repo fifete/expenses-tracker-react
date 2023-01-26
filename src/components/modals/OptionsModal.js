@@ -6,7 +6,7 @@ export const OptionsModal = ({
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const openTooltip = (
-    <div className='tooltip flex fs-smallest' onClick={() => setShowTooltip(false)}>
+    <div className='tooltip-bottom flex fs-smallest' onClick={() => setShowTooltip(false)}>
       <span onClick={handleShowEdit}>
         Edit
       </span>

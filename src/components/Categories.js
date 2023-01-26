@@ -7,8 +7,9 @@ export const Categories = ({
   handleShow
 }) => {
   const { budgets, getBudgets } = useCategories()
+  const uid = sessionStorage.getItem('uid')
   useEffect(() => {
-    getBudgets();
+    if(uid) getBudgets(uid);
   }, []);
 
   return (

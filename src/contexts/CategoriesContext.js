@@ -2,6 +2,13 @@ import React, { useContext, useState } from "react"
 import { v4 as uuidv4 } from 'uuid';
 
 const CategoriesContext = React.createContext()
+let uid
+if(sessionStorage.getItem('uid')){
+  uid = sessionStorage.getItem('uid')
+} else {
+  uid = uuidv4()
+  sessionStorage.setItem('uid', uid)
+}
 
 export function useCategories() {
   return useContext(CategoriesContext)
@@ -118,8 +125,8 @@ export function CategoriesProvider({ children }) {
     setIsUpdatedAmount(true)
   }
 
-  async function getBudgets() {
-    const response = await fetch("https://localhost:7285/api/Categories/");
+  async function getBudgets(uidTemp) {
+    const response = await fetch(`https://localhost:7285/api/Categories?UserIdTemp=${uidTemp}`);
 
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;
@@ -137,7 +144,7 @@ export function CategoriesProvider({ children }) {
 
   async function addBudget({ name, max, emoji, color }) {
     const category = {
-      userIdTemp: uuidv4(),
+      userIdTemp: sessionStorage.getItem('uid'),
       name,
       maxBudget: max,
       spendingAmount: 0,

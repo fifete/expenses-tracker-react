@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import '../../styles/optionsModal.css';
 
 export const OptionsModal = ({
   handleShowDelete, handleShowEdit
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const openTooltip = (
-    <div onClick={() => setShowTooltip(false)}>
-      <Button className="btn btn-link p-0" onClick={handleShowEdit}>
+    <div className='tooltip flex fs-smallest' onClick={() => setShowTooltip(false)}>
+      <span onClick={handleShowEdit}>
         Edit
-      </Button>
-      <Button className="btn btn-link p-0" onClick={() => handleShowDelete(true)}>
+      </span>
+      <span onClick={() => handleShowDelete(true)}>
         Delete
-      </Button>
+      </span>
     </div>
   );
 

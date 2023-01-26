@@ -130,7 +130,7 @@ i:hover {
 }
 
 .body .card-custom {
-  border: 1px solid #dad8dc;
+  border: 1px solid var(--clr-primary-200);
   border-radius: 1.5rem;
   padding: 1rem;
   background-color: hsl(var(--clr-primary-100));

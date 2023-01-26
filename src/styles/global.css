@@ -9,12 +9,23 @@ html {
 }
 
 .body {
-  /* margin: 0 0 var(--header-height) 0; */
   font-family: var(--body-font);
   font-size: var(--normal-fs);
   font-weight: var(--fw-regular);
   background-color: hsl(var(--clr-primary-100));
   color: hsl(var(--clr-text));
+}
+
+#root {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.home {
+  height: 100%;
 }
 
 .body h1,
@@ -75,6 +86,10 @@ i:hover {
 
 .body .fs-smallest {
   font-size: var(--smaller-fs);
+}
+
+.body .fs-icon {
+  font-size: var(--icon-fs);
 }
 
 .body .fw-600 {
@@ -148,9 +163,8 @@ i:hover {
 
 /*==================== LAYOUT ====================*/
 .body .container-limits {
-  max-width: 30rem;
-  padding-inline: 5%;
-  padding-block: 4vh;
+  padding-block: max(2rem, 10vh);
+  padding-inline: max(1rem, 5%);
 }
 
 .body .flex {
@@ -161,19 +175,23 @@ i:hover {
   display: grid;
 }
 
-.custom-stack-0-5 > * + * {
+.custom-stack-0-5>*+* {
   margin-top: var(--m-0-5);
 }
-.custom-stack-1 > * + * {
+
+.custom-stack-1>*+* {
   margin-top: var(--m-1);
 }
-.custom-stack-1-5 > * + * {
+
+.custom-stack-1-5>*+* {
   margin-top: var(--m-1-5);
 }
-.custom-stack-2 > * + * {
+
+.custom-stack-2>*+* {
   margin-top: var(--m-2);
 }
-.custom-stack-2-5 > * + * {
+
+.custom-stack-2-5>*+* {
   margin-top: var(--m-2-5);
 }
 
@@ -186,16 +204,9 @@ i:hover {
   background: hsl(var(--clr-light-100));
 }
 
-@media screen and (min-width: 768px) {
-  .section {
-    padding: 6rem 0 2rem;
-  }
-
-  .section__subtitle {
-    margin-bottom: 4rem;
-  }
-
-  .header {
-    padding: 0 1rem;
+@media screen and (min-width: 600px) {
+  .body .home {
+    display: flex;
+    background-color: transparent;
   }
 }

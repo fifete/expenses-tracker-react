@@ -1,7 +1,5 @@
 /*==================== VARIABLES CSS ====================*/
 :root {
-  --header-height: 3rem;
-
   /*========== Colors ==========*/
   --clr-text: 0, 1%, 25%;
   --clr-primary-900: 0, 1%, 15%;
@@ -16,13 +14,14 @@
   --ff-remark: 'Inter', sans-serif;
   --ff-prices: 'Montserrat', sans-serif;
 
-  --big-fs: 1.875rem;
-  --h1-fs: 1.5rem;
-  --h2-fs: 1.375rem;
-  --h3-fs: 1.125rem;
-  --normal-fs: 1rem;
-  --small-fs: .875rem;
-  --smaller-fs: .75rem;
+  --big-fs: calc(1.875rem + 1vw);
+  --h1-fs: calc(1.5rem + .4vw);
+  --h2-fs: calc(1.375rem + .3vw);
+  --h3-fs: calc(1.125rem + .2vw);
+  --normal-fs: calc(1rem + .2vw);
+  --small-fs: calc(.875rem + .2vw);
+  --smaller-fs: calc(.75rem + .2vw);
+  --icon-fs: calc(1.125rem + 4vw);
 
   /*========== Font weight ==========*/
   --fw-light: 300;
@@ -39,35 +38,21 @@
   --m-2-5: 2.5rem;
 
   /*========== z index ==========*/
-  --z-tooltip: 10;
+  /* --z-tooltip: 10;
   --z-fixed: 100;
-  --z-modal: 1000;
-}
-
-/*========== Variables Dark theme ==========*/
-
-[data-theme='dark'] {
-  --clr-black: 30, 8%, 95%;
-  --clr-black-remark: 0, 1%, 14%;
-  --clr-text: 23, 22%, 86%;
-  --clr-text-remark: 24, 6%, 17%;
-  --clr-dark: 301, 44%, 58%;
-  --clr-dark-hover: 301, 41%, 62%;
-  --clr-light-300: 48, 61%, 52%;
-  --clr-light-200: 28, 19%, 85%;
-  --clr-light-100: 30, 14%, 8%;
-  --clr-card-container: rgb(32, 27, 24);
+  --z-modal: 1000; */
 }
 
 /* Font size for large devices */
-@media screen and (min-width: 968px) {
+@media screen and (min-width: 62.5rem) {
   :root {
-    --big-fs: 2.7rem;
-    --h1-fs: 2.25rem;
+    --big-fs: 2.375rem;
+    --h1-fs: 1.75rem;
     --h2-fs: 1.5rem;
     --h3-fs: 1.25rem;
-    --normal-fs: 1rem;
-    --small-fs: .875rem;
-    --smaller-fs: .813rem;
+    --normal-fs: 1.125rem;
+    --small-fs: 1rem;
+    --smaller-fs: .875rem;
+    --icon-fs: 1.875rem;
   }
 }

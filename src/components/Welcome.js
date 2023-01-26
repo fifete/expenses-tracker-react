@@ -23,13 +23,13 @@ export const Welcome = ({
             className='btn btn-traslucid flex justify-content-center align-items-center'
             onClick={() => handleShow(true)}
           >
-            <i className="uil uil-plus fs-500 fw-600"></i>
+            <i className="uil uil-plus fs-icon fw-600"></i>
           </span>
           <p className='fs-smallest'>Expense</p>
         </div>
         <div className='welcome-btn-container grid'>
           <span className='btn btn-traslucid flex justify-content-center align-items-center'>
-            <i className="uil uil-graph-bar fs-500 fw-600"></i>
+            <i className="uil uil-graph-bar fs-icon fw-600"></i>
           </span>
           <p className='fs-smallest'>Stats</p>
         </div>

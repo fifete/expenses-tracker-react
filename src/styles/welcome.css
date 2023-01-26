@@ -1,6 +1,6 @@
 .welcome {
   flex-direction: column;
-  gap: 2rem;
+  gap: clamp(3rem, 4vh + 2rem, 6rem);
 }
 
 .home .welcome,
@@ -17,7 +17,7 @@
 
 .welcome-buttons {
   justify-content: space-evenly;
- } 
+}
 
 .welcome-btn-container {
   gap: .5em;
@@ -25,6 +25,14 @@
 }
 
 .welcome-buttons span {
-  width: 3.2rem;
-  height: 3.2rem;
+  width: calc(3.2rem + 3vw);
+  height: calc(3.2rem + 3vw);
+  padding: 0;
+}
+
+@media screen and (min-width: 600px) {
+  .welcome {
+    width: 50%;
+    background-color: purple;
+  }
 }

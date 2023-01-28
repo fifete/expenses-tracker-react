@@ -21,7 +21,7 @@
   --normal-fs: calc(1rem + .2vw);
   --small-fs: calc(.875rem + .2vw);
   --smaller-fs: calc(.75rem + .2vw);
-  --icon-fs: calc(1.125rem + 4vw);
+  --icon-fs: calc(1.125rem + 1.5vw);
 
   /*========== Font weight ==========*/
   --fw-light: 300;
@@ -36,11 +36,6 @@
   --m-1-5: 1.5rem;
   --m-2: 2rem;
   --m-2-5: 2.5rem;
-
-  /*========== z index ==========*/
-  /* --z-tooltip: 10;
-  --z-fixed: 100;
-  --z-modal: 1000; */
 }
 
 /* Font size for large devices */

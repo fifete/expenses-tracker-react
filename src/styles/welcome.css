@@ -33,6 +33,9 @@
 @media screen and (min-width: 600px) {
   .welcome {
     width: 50%;
-    background-color: purple;
+    background-image: url("/public/home_bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
   }
 }

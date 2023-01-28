@@ -1,3 +1,7 @@
+.category_view-info {
+  position: relative;
+}
+
 .category-top {
   justify-content: space-between;
 }
@@ -17,5 +21,12 @@
 
 .categ-expenses {
   grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+@media screen and (min-width: 600px) {
+  .category_view {
+    max-width: 55ch;
+    margin-inline: auto;
+  }
 }

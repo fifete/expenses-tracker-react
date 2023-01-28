@@ -158,7 +158,10 @@ i:hover {
 
 /*==================== BACKGROUND ====================*/
 .body .home {
-  background-color: purple;
+  background-image: url("/public/home_bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
 }
 
 /*==================== LAYOUT ====================*/
@@ -207,6 +210,6 @@ i:hover {
 @media screen and (min-width: 600px) {
   .body .home {
     display: flex;
-    background-color: transparent;
+    background: none;
   }
 }

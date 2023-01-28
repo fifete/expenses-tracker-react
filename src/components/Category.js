@@ -56,16 +56,16 @@ export const CategoryView = () => {
 
   return (
     <>
-      <div className='custom-stack-2-5 container-limits custom-stack'>
+      <div className='category_view custom-stack-2-5 container-limits custom-stack'>
         {
           category ?
-            <div className='custom-stack-1-5 custom-stack'>
+            <div className='category_view-info custom-stack-1-5 custom-stack'>
               <div className='category-top flex fs-700'>
                 <i
                   className='uil uil-angle-left-b'
                   onClick={() => navigate("/home")}></i>
                 {
-                  cardId !== 8029 &&
+                  cardId !== 2 &&
                   <OptionsModal
                     handleShowDelete={setShowDeleteModalCategory}
                     handleShowEdit={() => setShowEditModalCategory(prev => ({
@@ -108,13 +108,13 @@ export const CategoryView = () => {
               </div>
             </div>
             :
-            <div className='custom-stack-1-5 custom-stack'>
+            <div className='category_view-info custom-stack-1-5 custom-stack'>
               <div className='category-top flex fs-700'>
                 <i
                   className='uil uil-angle-left-b'
                   onClick={() => navigate("/home")}></i>
                 {
-                  cardId !== 8029 &&
+                  cardId !== 2 &&
                   <OptionsModal
                     handleShowDelete={setShowDeleteModalCategory}
                     handleShowEdit={() => setShowEditModalCategory(prev => ({

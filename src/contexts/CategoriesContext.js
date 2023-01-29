@@ -31,7 +31,7 @@ export function CategoriesProvider({ children }) {
     const amount = await response.json();
     console.log(amount)
 
-    return amount.spendingAmount
+    return amount.spendingamount
   }
 
   async function getCategoryExpenses(budgetId) {
@@ -43,7 +43,6 @@ export function CategoriesProvider({ children }) {
     }
 
     const expenses = await response.json();
-
     setExpenses(expenses)
   }
   

@@ -227,7 +227,7 @@ export const CategoryView = () => {
         handleClose={() => setShowEditExpenseModal(prev => ({ ...prev, isOpen: false }))}
         expense={showEditExpenseModal.expense}
         defaultCategory={category ? category.name : name}
-        isDisabled={false}
+        isDisabled={true}
       />
     </>
   )

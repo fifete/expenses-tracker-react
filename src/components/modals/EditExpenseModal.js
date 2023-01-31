@@ -66,7 +66,6 @@ export const EditExpenseModal = ({
                   {budget.name}
                 </option>
               ))}
-              <option>Uncategorized</option>
             </Form.Select>
           </Form.Group>
 

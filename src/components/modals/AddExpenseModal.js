@@ -25,7 +25,6 @@ export const AddExpenseModal = ({
       amount: parseFloat(amountRef.current.value),
       budgetId: budgetIdRef.current.value,
     })
-    // setDescriptionLength(0)
     handleClose()
   }
 
@@ -67,7 +66,6 @@ export const AddExpenseModal = ({
                   {budget.name}
                 </option>
               ))}
-              <option>Uncategorized</option>
             </Form.Select>
           </Form.Group>
 

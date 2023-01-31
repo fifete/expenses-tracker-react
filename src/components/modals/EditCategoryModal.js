@@ -66,7 +66,7 @@ export const EditCategoryModal = ({ show, handleClose, category }) => {
             setEmoji={setSelectedEmoji}
           />
           <Form.Group className="mb-3" controlId="budgetId">
-            <Form.Label>Category</Form.Label>
+            <Form.Label>Color</Form.Label>
             <Form.Select ref={colorRef} defaultValue={category.color}>
               <option>&#128711;</option>
               {colors.map(color => (

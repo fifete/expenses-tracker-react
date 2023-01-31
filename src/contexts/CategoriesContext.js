@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const CategoriesContext = React.createContext()
 let uid
-if(sessionStorage.getItem('uid')){
+if (sessionStorage.getItem('uid')) {
   uid = sessionStorage.getItem('uid')
 } else {
   uid = uuidv4()
@@ -35,7 +35,7 @@ export function CategoriesProvider({ children }) {
   }
 
   async function getCategoryExpenses(budgetId) {
-    const response = await fetch(`https://expensestrackerapi.up.railway.app/api/Expenses?categoryId=${budgetId}`);
+  const response = await fetch(`https://expensestrackerapi.up.railway.app/api/Expenses?categoryId=${budgetId}&userIdTemp=${uid}`);
 
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;
@@ -45,14 +45,15 @@ export function CategoriesProvider({ children }) {
     const expenses = await response.json();
     setExpenses(expenses)
   }
-  
+
   async function addExpense({ date, time, description, amount, budgetId }) {
     const expense = {
       categoryId: budgetId,
+      userIdTemp: uid,
       description: description,
       amount: amount,
       date: date,
-      time: time        
+      time: time
     }
 
     const requestOptions = {
@@ -208,7 +209,7 @@ export function CategoriesProvider({ children }) {
         budgetToUpdate.name = UpdatedBudgetResponse.name
         budgetToUpdate.maxBudget = UpdatedBudgetResponse.maxBudget
         budgetToUpdate.emoji = UpdatedBudgetResponse.emoji
-        budgetToUpdate.color = UpdatedBudgetResponse.color 
+        budgetToUpdate.color = UpdatedBudgetResponse.color
       }
       return prevBudgets
     })
@@ -236,6 +237,7 @@ export function CategoriesProvider({ children }) {
   }
 
   const value = {
+    uid,
     budgets,
     expenses,
     getBudgets,

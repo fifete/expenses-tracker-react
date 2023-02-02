@@ -28,7 +28,7 @@ export function CategoriesProvider({ children }) {
   // )
 
   async function getTotalDailySpent(userIdTemp, date) {
-    const response = await fetch(`https://localhost:7227/api/ExpensesByDate?UserIdTemp=${userIdTemp}&date=${date}`);
+    const response = await fetch(`https://expensestrackerapi.up.railway.app/api/ExpensesByDate?UserIdTemp=${userIdTemp}&date=${date}`);
 
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;
@@ -41,7 +41,7 @@ export function CategoriesProvider({ children }) {
 
 
   async function getCategoryAmount(budgetId) {
-    const response = await fetch(`https://localhost:7227/api/CategoryExpenses/${budgetId}`);
+    const response = await fetch(`https://expensestrackerapi.up.railway.app/api/CategoryExpenses/${budgetId}`);
 
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;
@@ -55,7 +55,7 @@ export function CategoriesProvider({ children }) {
   }
 
   async function getCategoryExpenses(budgetId) {
-  const response = await fetch(`https://localhost:7227/api/Expenses?categoryId=${budgetId}&userIdTemp=${uid}`);
+  const response = await fetch(`https://expensestrackerapi.up.railway.app/api/Expenses?categoryId=${budgetId}&userIdTemp=${uid}`);
 
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;
@@ -85,7 +85,7 @@ export function CategoriesProvider({ children }) {
       body: JSON.stringify(expense)
     }
 
-    const response = await fetch('https://localhost:7227/api/Expenses', requestOptions);
+    const response = await fetch('https://expensestrackerapi.up.railway.app/api/Expenses', requestOptions);
     if (!response.ok) {
       console.log(response)
       const message = `An error has occured: ${response.status}`;
@@ -113,7 +113,7 @@ export function CategoriesProvider({ children }) {
       body: JSON.stringify(updatedExpense)
     }
 
-    const response = await fetch(`https://localhost:7227/api/Expenses/${expenseId}`, requestOptions);
+    const response = await fetch(`https://expensestrackerapi.up.railway.app/api/Expenses/${expenseId}`, requestOptions);
 
     if (!response.ok) {
       console.log(response)
@@ -131,7 +131,7 @@ export function CategoriesProvider({ children }) {
   async function deleteExpense(expenseID) {
     const requestOptions = { method: "DELETE" }
 
-    const response = await fetch(`https://localhost:7227/api/Expenses/${expenseID}`, requestOptions);
+    const response = await fetch(`https://expensestrackerapi.up.railway.app/api/Expenses/${expenseID}`, requestOptions);
 
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;
@@ -146,7 +146,7 @@ export function CategoriesProvider({ children }) {
   }
 
   async function getBudgets(uidTemp) {
-    const response = await fetch(`https://localhost:7227/api/Categories?UserIdTemp=${uidTemp}`);
+    const response = await fetch(`https://expensestrackerapi.up.railway.app/api/Categories?UserIdTemp=${uidTemp}`);
 
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;
@@ -181,7 +181,7 @@ export function CategoriesProvider({ children }) {
       body: JSON.stringify(category)
     }
 
-    const response = await fetch('https://localhost:7227/api/Categories', requestOptions);
+    const response = await fetch('https://expensestrackerapi.up.railway.app/api/Categories', requestOptions);
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;
       throw new Error(message);
@@ -213,7 +213,7 @@ export function CategoriesProvider({ children }) {
       body: JSON.stringify(updatedCategory)
     }
 
-    const response = await fetch(`https://localhost:7227/api/Categories/${id}`, requestOptions);
+    const response = await fetch(`https://expensestrackerapi.up.railway.app/api/Categories/${id}`, requestOptions);
 
     if (!response.ok) {
       console.log(response)
@@ -240,7 +240,7 @@ export function CategoriesProvider({ children }) {
   async function deleteBudget(id) {
     const requestOptions = { method: "DELETE" }
 
-    const response = await fetch(`https://localhost:7227/api/Categories/${id}`, requestOptions);
+    const response = await fetch(`https://expensestrackerapi.up.railway.app/api/Categories/${id}`, requestOptions);
 
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;

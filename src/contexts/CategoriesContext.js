@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { v4 as uuidv4 } from 'uuid';
 
 const CategoriesContext = React.createContext()
@@ -19,6 +19,26 @@ export function CategoriesProvider({ children }) {
   const [expenses, setExpenses] = useState([])
   const [isUpdatedAmount, setIsUpdatedAmount] = useState(false)
   const [isUpdatedCategory, setIsUpdatedCategory] = useState(false)
+
+  // testing api calll
+  // useEffect(() => {
+  //   getTotalDailySpent('6470b0ce-ef03-4c81-bf5c-0384647673c8', '2/1/2023')
+
+  // }, []
+  // )
+
+  async function getTotalDailySpent(userIdTemp, date) {
+    const response = await fetch(`https://localhost:7227/api/ExpensesByDate?UserIdTemp=${userIdTemp}&date=${date}`);
+
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+
+    const dailyExpense = await response.json();
+    return dailyExpense.total_amount
+  }
+
 
   async function getCategoryAmount(budgetId) {
     const response = await fetch(`https://expensestrackerapi.up.railway.app/api/CategoryExpenses/${budgetId}`);
@@ -250,7 +270,7 @@ export function CategoriesProvider({ children }) {
     getBudgetById,
     getBudgetExpenses: getCategoryExpenses,
     isUpdatedCategory, setIsUpdatedCategory,
-    getCategoryAmount,
+    getCategoryAmount, getTotalDailySpent,
     isUpdatedAmount, setIsUpdatedAmount
     // expensesAmount, setExpensesAmount
   }

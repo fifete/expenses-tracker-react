@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
+import { useCategories } from '../contexts/CategoriesContext';
 import '../styles/welcome.css';
 
 export const Welcome = ({
   handleShow
 }) => {
   let navigate = useNavigate();
+  const {
+    uid, getTotalDailySpent, isUpdatedCategory, isUpdatedAmount,
+  } = useCategories()
+  const [totalDailySpent, setTotalDailySpent] = useState(0)
+  const date = new Date().toLocaleString().split(',')[0]
+
+  useEffect(() => {
+    async function fetchAmount() {
+      const dailySpent = await getTotalDailySpent(uid, date)
+      setTotalDailySpent(dailySpent)
+    }
+    fetchAmount();
+  }, [isUpdatedAmount, isUpdatedCategory]);
+
   return (
     <div className='welcome flex container-limits' id='welcome'>
       <div className='flex justify-content-between align-items-start'>
@@ -17,13 +32,14 @@ export const Welcome = ({
           className='btn btn-traslucid ff-remark fs-small fw-600'
           onClick={() => {
             console.log('Log In')
-            navigate('/coming')}}
+            navigate('/coming')
+          }}
         >Log In
         </button>
       </div>
       <div>
         <h5 className='fs-small fw-300'>Expenses Today</h5>
-        <h1 className='ff-price fs-big'>$29.4</h1>
+        <h1 className='ff-price fs-big'>${totalDailySpent}</h1>
       </div>
       <div className='welcome-buttons flex ff-remark'>
         <div className='welcome-btn-container grid'>

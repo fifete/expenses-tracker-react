@@ -33,7 +33,7 @@ export const AddCategoryModal = ({ show, handleClose }) => {
         <Modal.Header closeButton>
           <Modal.Title>Add Category</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="modal-custom ff-remark">
           <NameInputCategory nameRef={nameRef} name='' />
 
           <Form.Group className="mb-3" controlId="max">

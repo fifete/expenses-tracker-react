@@ -8,6 +8,8 @@
   --clr-primary-200: hsl(270, 5%, 85%);
   --clr-primary-100: 29, 100%, 100%;
   --clr-card-container: hsl(0, 0%, 96%);
+  --clr-modal-label: hsl(0, 1.3%, 29.4%);
+  --clr-modal-input: hsl(0, 1%, 57%);
 
   /*========== Font and typography ==========*/
   --body-font: 'Raleway', sans-serif;

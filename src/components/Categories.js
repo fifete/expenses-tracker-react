@@ -16,10 +16,10 @@ export const Categories = ({
     <div className='categories container-limits'>
       <div className='flex categories-title'>
         <h3 className='fs-500'>Categories</h3>
-        <span
+        <i
           className="uil uil-plus-circle fs-smallest"
           onClick={() => handleShow(true)}
-        ></span>
+        ></i>
       </div>
       <div className='categories-cards'>
         {

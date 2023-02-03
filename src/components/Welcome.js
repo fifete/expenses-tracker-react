@@ -29,7 +29,7 @@ export const Welcome = ({
           <span className='name ff-remark fs-500 fw-600'>Welcome!</span>
         </div>
         <button
-          className='btn btn-traslucid ff-remark fs-small fw-600'
+          className='btn-custom btn-traslucid ff-remark fs-small fw-600'
           onClick={() => {
             console.log('Log In')
             navigate('/coming')
@@ -44,7 +44,7 @@ export const Welcome = ({
       <div className='welcome-buttons flex ff-remark'>
         <div className='welcome-btn-container grid'>
           <span
-            className='btn btn-traslucid flex justify-content-center align-items-center'
+            className='btn-custom btn-traslucid flex justify-content-center align-items-center'
             onClick={() => navigate('/coming')}
           >
             <i className="uil uil-graph-bar fs-icon fw-600"></i>
@@ -53,7 +53,7 @@ export const Welcome = ({
         </div>
         <div className='welcome-btn-container grid'>
           <span
-            className='btn btn-traslucid flex justify-content-center align-items-center'
+            className='btn-custom btn-traslucid flex justify-content-center align-items-center'
             onClick={() => handleShow(true)}
           >
             <i className="uil uil-plus fs-icon fw-600"></i>

@@ -159,7 +159,7 @@ export const CategoryView = () => {
 
         <div className='custom-stack-2'>
           <button
-            className='btn btn-traslucid ff-remark fs-small fw-600'
+            className='btn-custom btn-traslucid ff-remark fs-small fw-600'
             onClick={() => setShowAddExpenseModal(true)}
           >
             Add Expense

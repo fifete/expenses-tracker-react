@@ -129,7 +129,7 @@ i:hover {
 }
 
 /*==================== ELEMENTS ====================*/
-.body .btn {
+.body .btn-custom {
   border: 0;
   border-radius: .8em;
   padding: .4em.6em;
@@ -198,13 +198,12 @@ i:hover {
   margin-top: var(--m-2-5);
 }
 
-.header {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: var(--z-fixed);
-  background: hsl(var(--clr-light-100));
+.body .modal-custom {
+  color: var(--clr-modal-label);
+}
+
+.modal-custom input, .modal-custom select {
+  color: var(--clr-modal-input);
 }
 
 @media screen and (min-width: 600px) {

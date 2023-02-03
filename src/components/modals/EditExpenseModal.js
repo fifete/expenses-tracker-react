@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { useCategories } from '../../contexts/CategoriesContext';
 import { NameInputExpense } from './NameInputExpense';
+import '../../styles/modals.css'
 
 export const EditExpenseModal = ({
   show, handleClose, expense, defaultCategory, isDisabled
@@ -33,7 +34,7 @@ export const EditExpenseModal = ({
         <Modal.Header closeButton>
           <Modal.Title>Edit Expense</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="modal-custom ff-remark">
           <Form.Group className="mb-3" controlId="amount">
             <Form.Label>Amount</Form.Label>
             <Form.Control
@@ -74,7 +75,7 @@ export const EditExpenseModal = ({
             descriptionRef={descriptionRef}
           />
 
-          <Form.Group controlId="formDate">
+          <Form.Group controlId="formDate" className="mb-3">
             <Form.Label>Date and Time</Form.Label>
             <DatePicker
               selected={selectedDate}

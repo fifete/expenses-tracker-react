@@ -1,6 +1,6 @@
 import { Form, Modal, Button } from "react-bootstrap"
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useCategories } from "../../contexts/CategoriesContext"
 import { PickEmoji } from "./PickEmoji"
 import { colors } from "../../data/colors"
@@ -34,7 +34,7 @@ export const EditCategoryModal = ({ show, handleClose, category }) => {
         <Modal.Header closeButton>
           <Modal.Title>Edit Category</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="modal-custom ff-remark">
           <NameInputCategory nameRef={nameRef} name={category.name} />
 
           <Form.Group className="mb-3" controlId="max">

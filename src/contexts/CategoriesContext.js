@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useState } from "react"
 import { v4 as uuidv4 } from 'uuid';
 
 const CategoriesContext = React.createContext()
@@ -19,13 +19,7 @@ export function CategoriesProvider({ children }) {
   const [expenses, setExpenses] = useState([])
   const [isUpdatedAmount, setIsUpdatedAmount] = useState(false)
   const [isUpdatedCategory, setIsUpdatedCategory] = useState(false)
-
-  // testing api calll
-  // useEffect(() => {
-  //   getTotalDailySpent('6470b0ce-ef03-4c81-bf5c-0384647673c8', '2/1/2023')
-
-  // }, []
-  // )
+  const [isDeletedCategory, setIsDeletedCategory] = useState(false)
 
   async function getTotalDailySpent(userIdTemp, date) {
     const response = await fetch(`https://expensestrackerapi.up.railway.app/api/ExpensesByDate?UserIdTemp=${userIdTemp}&date=${date}`);
@@ -41,7 +35,7 @@ export function CategoriesProvider({ children }) {
 
 
   async function getCategoryAmount(budgetId) {
-    const response = await fetch(`https://localhost:7227/api/CategoryExpenses?categoryId=${budgetId}&uidTemp=${uid}`);
+    const response = await fetch(`https://expensestrackerapi.up.railway.app/api/CategoryExpenses?categoryId=${budgetId}&uidTemp=${uid}`);
 
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;
@@ -253,6 +247,8 @@ export function CategoriesProvider({ children }) {
     setBudgets(prevBudgets => {
       return prevBudgets.filter(budget => budget.id !== id)
     })
+
+    setIsDeletedCategory(true)
   }
 
   const value = {
@@ -270,8 +266,8 @@ export function CategoriesProvider({ children }) {
     getBudgetExpenses: getCategoryExpenses,
     isUpdatedCategory, setIsUpdatedCategory,
     getCategoryAmount, getTotalDailySpent,
-    isUpdatedAmount, setIsUpdatedAmount
-    // expensesAmount, setExpensesAmount
+    isUpdatedAmount, setIsUpdatedAmount,
+    isDeletedCategory
   }
 
   return (

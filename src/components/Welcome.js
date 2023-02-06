@@ -8,7 +8,8 @@ export const Welcome = ({
 }) => {
   let navigate = useNavigate();
   const {
-    uid, getTotalDailySpent, isUpdatedCategory, isUpdatedAmount,
+    uid, getTotalDailySpent, isDeletedCategory,
+    isUpdatedCategory, isUpdatedAmount,
   } = useCategories()
   const [totalDailySpent, setTotalDailySpent] = useState(0)
   const date = new Date().toLocaleString().split(',')[0]
@@ -19,7 +20,7 @@ export const Welcome = ({
       setTotalDailySpent(dailySpent)
     }
     fetchAmount();
-  }, [isUpdatedAmount, isUpdatedCategory]);
+  }, [isUpdatedAmount, isUpdatedCategory, isDeletedCategory]);
 
   return (
     <div className='welcome flex container-limits' id='welcome'>

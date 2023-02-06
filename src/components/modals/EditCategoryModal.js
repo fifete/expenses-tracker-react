@@ -25,7 +25,7 @@ export const EditCategoryModal = ({ show, handleClose, category }) => {
       emoji: selectedEmoji ? selectedEmoji : category.emoji,
     })
     handleClose()
-    setSelectedEmoji(category.emoji)
+    // setSelectedEmoji(category.emoji)
   }
 
   return (

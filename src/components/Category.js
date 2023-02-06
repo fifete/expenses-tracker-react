@@ -89,7 +89,6 @@ export const CategoryView = () => {
                 <h2 className='category_view-title fs-600 fw-500'>{category.name}</h2>
                 <div className='custom-stack-0-5'>
                   <div className='category_view-amount flex'>
-                    <p>Testing now modified:</p>
                     <span className='ff-price'>${amount ? amount : spendingAmount}</span>
                     <span className='ff-price'> / ${category.maxBudget}</span>
                   </div>

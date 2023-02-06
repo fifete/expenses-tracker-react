@@ -18,7 +18,7 @@ export const AddCategoryModal = ({ show, handleClose }) => {
     addBudget({
       name: nameRef.current.value,
       max: maxRef.current.value,
-      emoji: selectedEmoji,
+      emoji: selectedEmoji ? selectedEmoji : '💠',
       color: colorRef.current.value
     }).catch(error => {
       console.log(error.message)

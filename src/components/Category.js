@@ -28,7 +28,7 @@ export const CategoryView = () => {
   const [showDeleteModalExpense, setShowDeleteModalExpense] = useState({ isOpen: false, expenseID: '' });
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
   const [showEditExpenseModal, setShowEditExpenseModal] = useState({ isOpen: false, expense: {} })
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState('')
 
   const { cardId, maxBudget, spendingAmount, name, color, emoji } = location.state ? location.state : { cardId: '', maxBudget: '', spendingAmount: '', name: `Get back to previous tab to reload content`, color: '', emoji: '' }
 
@@ -137,17 +137,17 @@ export const CategoryView = () => {
                 <h2 className='category_view-title fs-600 fw-500'>{name}</h2>
                 <div className='custom-stack-0-5'>
                   <div className='category_view-amount flex'>
-                    <span className='ff-price'>${amount ? amount : spendingAmount}</span>
+                    <span className='ff-price'>${typeof(amount) == 'number' ? amount : spendingAmount}</span>
                     <span className='ff-price'> / ${maxBudget}</span>
                   </div>
                   {maxBudget && (
                     <div className='categ-percent-bar'>
                       <ProgressBar
                         className="rounded-pill"
-                        variant={getProgressBarVariant(amount ? amount : spendingAmount, maxBudget)}
+                        variant={getProgressBarVariant(typeof(amount) == 'number' ? amount : spendingAmount, maxBudget)}
                         min={0}
                         max={maxBudget}
-                        now={amount ? amount : spendingAmount}
+                        now={typeof(amount) == 'number' ? amount : spendingAmount}
                       />
                     </div>
                   )}

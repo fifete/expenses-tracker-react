@@ -46,7 +46,7 @@ export const Welcome = ({
         <div className='welcome-btn-container grid'>
           <span
             className='btn-custom btn-traslucid flex justify-content-center align-items-center'
-            onClick={() => navigate('/coming')}
+            onClick={() => navigate('/stats')}
           >
             <i className="uil uil-graph-bar fs-icon fw-600"></i>
           </span>

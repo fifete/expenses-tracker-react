@@ -35,7 +35,7 @@ export function CategoriesProvider({ children }) {
 
 
   async function getCategoryAmount(budgetId) {
-    const response = await fetch(`https://expensestrackerapi.up.railway.app/api/CategoryExpenses?categoryId=${budgetId}&uidTemp=${uid}`);
+    const response = await fetch(`https://localhost:7227/api/CategoryExpenses/${budgetId}/${uid}`);
 
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;

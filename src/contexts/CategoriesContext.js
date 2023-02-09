@@ -33,9 +33,19 @@ export function CategoriesProvider({ children }) {
     return dailyExpense.total_amount
   }
 
+  async function getCategoriesAmount(date) {
+    const response = await fetch(`https://localhost:7227/api/CategoryExpenses/${uid}?date=${date}`);
+
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+      throw new Error(message);
+    }
+
+    return await response.json();
+  }
 
   async function getCategoryAmount(budgetId) {
-    const response = await fetch(`https://localhost:7227/api/CategoryExpenses/${budgetId}/${uid}`);
+    const response = await fetch(`https://localhost:7227/api/CategoryExpenses/${uid}/${budgetId}`);
 
     if (!response.ok) {
       const message = `An error has occured: ${response.status}`;
@@ -44,7 +54,7 @@ export function CategoriesProvider({ children }) {
 
     const amount = await response.json();
 
-    return amount.spendingamount
+    return amount.spending_amount
   }
 
   async function getCategoryExpenses(budgetId) {
@@ -267,7 +277,8 @@ export function CategoriesProvider({ children }) {
     isUpdatedCategory, setIsUpdatedCategory,
     getCategoryAmount, getTotalDailySpent,
     isUpdatedAmount, setIsUpdatedAmount,
-    isDeletedCategory
+    isDeletedCategory,
+    getCategoriesAmount
   }
 
   return (

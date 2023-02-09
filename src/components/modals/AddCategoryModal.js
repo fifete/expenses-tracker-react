@@ -66,7 +66,6 @@ export const AddCategoryModal = ({ show, handleClose }) => {
           <Form.Group className="mb-3" controlId="budgetId">
             <Form.Label>Category</Form.Label>
             <Form.Select ref={colorRef}>
-              <option>&#128711;</option>
               {colors.map(color => (
                 <option key={color.id} value={color.hexCode}>
                   {color.icon} {color.name}

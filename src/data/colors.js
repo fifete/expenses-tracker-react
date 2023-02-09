@@ -36,4 +36,10 @@ export const colors = [
         name: 'Yellow',
         icon: '🟡',
     },
+    {
+        id: 7,
+        hexCode: '#a9684e',
+        name: 'Brown',
+        icon: '🟤',
+    },
 ]

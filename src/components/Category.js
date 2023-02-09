@@ -56,10 +56,10 @@ export const CategoryView = () => {
 
   return (
     <>
-      <div className='category_view custom-stack-2-5 container-limits custom-stack'>
+      <div className='category_view custom-stack-2-5 container-limits'>
         {
           category ?
-            <div className='category_view-info custom-stack-1-5 custom-stack'>
+            <div className='category_view-info custom-stack-1-5'>
               <div className='category-top flex fs-700'>
                 <i
                   className='uil uil-angle-left-b'
@@ -107,7 +107,7 @@ export const CategoryView = () => {
               </div>
             </div>
             :
-            <div className='category_view-info custom-stack-1-5 custom-stack'>
+            <div className='category_view-info custom-stack-1-5'>
               <div className='category-top flex fs-700'>
                 <i
                   className='uil uil-angle-left-b'

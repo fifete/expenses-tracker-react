@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
 import { useCategories } from '../contexts/CategoriesContext';
-const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 }
-];
+import '../styles/stats.css'
 
 export const Stats = () => {
-  const {getCategoriesAmount} = useCategories()
+  const { getCategoriesAmount } = useCategories()
   const [categoriesAmount, setcategoriesAmount] = useState([])
+  const navigate = useNavigate();
   const date = new Date().toLocaleString().split(',')[0]
 
   useEffect(() => {
@@ -21,22 +18,25 @@ export const Stats = () => {
     fetchAmount();
   }, []);
   return (
-    <div>
-      <i>🔙</i>
-      <div>
-        <h1>My expenses</h1>
-        <div>
+    <div className='custom-stack-1-5 container-limits'>
+      <div className='flex fs-700'>
+        <i
+          className='uil uil-angle-left-b'
+          onClick={() => navigate("/home")}></i>
+      </div>
+      <div className='flex stats-top'>
+        <h2 className='fs-500'>My expenses</h2>
+        <div className='ff-remark fs-smallest'>
           <span>Today</span>
-          <i>🔻</i>
+          <i className='uil uil-angle-down'></i>
         </div>
       </div>
-      <div>
-        <h2>Chart</h2>
-        <PieChart width={800} height={400}>
+      <div className='flex center'>
+        <PieChart width={200} height={200}>
           <Pie
             data={categoriesAmount}
-            cx={120}
-            cy={200}
+            cx={100}
+            cy={100}
             innerRadius={60}
             outerRadius={70}
             paddingAngle={2}
@@ -49,13 +49,15 @@ export const Stats = () => {
           <Tooltip />
         </PieChart>
       </div>
-      <div>
+      <div className='custom-stack-1'>
         {
           categoriesAmount.map(category => (
-            <div>
-              <i>⭕</i>
-              <p>{category.name}</p>
-              <span>{category.spending_amount}</span>
+            <div className='flex card-custom center stats-category'>
+              <div className='flex center'>
+                <div style={{ backgroundColor: category.color }} className='category-circle'></div>
+                <p className='fs-small fw-500'>{category.name}</p>
+              </div>
+              <span className='ff-price'>${category.spending_amount}</span>
             </div>
           ))
         }

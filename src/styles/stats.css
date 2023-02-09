@@ -1,0 +1,26 @@
+.stats-top {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.center {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stats-category p {
+    margin: 0;
+    margin-left: .5em;
+}
+
+.category-circle {
+    width: .8rem;
+    height: .8rem;
+    border-radius: 50%;
+}
+
+.recharts-wrapper {
+    max-width: 100%;
+    display: flex;
+    margin-inline: auto;
+}

@@ -35,6 +35,15 @@
     border-radius: 50%;
 }
 
+.stats-fails {
+    text-align: center;
+}
+
+.stats-fails img {
+    width: 50%;
+    max-width: 200px;
+}
+
 
 @media screen and (min-width: 600px) {
     .stats {

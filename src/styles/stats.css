@@ -8,9 +8,25 @@
     justify-content: space-between;
 }
 
+.stats-daily-expense {
+    position: relative;
+}
+
+.stats-daily-expense>span {
+    position: absolute;
+    right: 45%;
+    top: 45%;
+}
+
 .stats-category p {
     margin: 0;
     margin-left: .5em;
+}
+
+.recharts-wrapper {
+    max-width: 100%;
+    display: flex;
+    margin-inline: auto;
 }
 
 .category-circle {
@@ -19,8 +35,10 @@
     border-radius: 50%;
 }
 
-.recharts-wrapper {
-    max-width: 100%;
-    display: flex;
-    margin-inline: auto;
+
+@media screen and (min-width: 600px) {
+    .stats {
+        max-width: 55ch;
+        margin-inline: auto;
+    }
 }

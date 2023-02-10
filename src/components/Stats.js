@@ -5,8 +5,9 @@ import { useCategories } from '../contexts/CategoriesContext';
 import '../styles/stats.css'
 
 export const Stats = () => {
-  const { getCategoriesAmount } = useCategories()
+  const { getCategoriesAmount, getTotalDailySpent, uid } = useCategories()
   const [categoriesAmount, setcategoriesAmount] = useState([])
+  const [totalDailySpent, setTotalDailySpent] = useState(0)
   const navigate = useNavigate();
   const date = new Date().toLocaleString().split(',')[0]
 
@@ -14,11 +15,14 @@ export const Stats = () => {
     async function fetchAmount() {
       const categoriesAmountResponse = await getCategoriesAmount(date);
       setcategoriesAmount(categoriesAmountResponse)
+      const dailySpent = await getTotalDailySpent(uid, date)
+      setTotalDailySpent(dailySpent)
     }
     fetchAmount();
   }, []);
+
   return (
-    <div className='custom-stack-1-5 container-limits'>
+    <div className='custom-stack-1-5 container-limits stats'>
       <div className='flex fs-700'>
         <i
           className='uil uil-angle-left-b'
@@ -31,11 +35,12 @@ export const Stats = () => {
           <i className='uil uil-angle-down'></i>
         </div>
       </div>
-      <div className='flex center'>
-        <PieChart width={200} height={200}>
+      <div className='flex center stats-daily-expense'>
+        <span className="ff-price fs-500">${totalDailySpent}</span>
+        <PieChart width={150} height={200}>
           <Pie
             data={categoriesAmount}
-            cx={100}
+            cx={75}
             cy={100}
             innerRadius={60}
             outerRadius={70}
